@@ -1,5 +1,3 @@
-from math import ceil
-
 class OSNMA:
     NMA_STATUS_ENUM = {
         0: "Reserved/Not in use",
@@ -50,10 +48,6 @@ class OSNMA:
         else:
             return (value - 5) * 4 + 20
 
-    @staticmethod
-    def NMACK_ENUM(value):
-        return 480 // value if value != 0 else "Reserved"
-
     def __init__(self, prn, hk_root_str, mack_str) -> None:
         self._hk_root_str = hk_root_str
         self._mack_str = mack_str
@@ -82,8 +76,6 @@ class OSNMA:
             self.alpha = hex(int(hk_root_str[72:120], 2))
 
             self.KS_Real = self.KEY_SIZE_ENUM(self.KS)
-            self.L_ds = 512
-            self.L_dk = 104 * ceil(1 + (self.KS_Real + self.L_ds) / 104)
 
     
     def copy(self):

@@ -17,12 +17,14 @@ except:
     filename = './data/osnma-capture.csv'
 
 try:
-    public_key_pem_filename = sys.argv[2]
+    public_key_dir = sys.argv[2]
 except:
-    print('Public key file not provided, using default ./data/OSNMA_PublicKey_Testing.pem')
-    public_key_pem_filename = './data/OSNMA_PublicKey_Testing.pem'
+    print('Public key directory not provided, using default ./osnma-keys')
+    public_key_dir = './osnma-keys'
 
 prn_messages = dict()
+
+verifier = OSNMA_Verifier(public_key_dir)
 
 # Read messages
 with open(filename) as f:
@@ -71,15 +73,13 @@ storage = OSNMA_Storage()
 for prn, subframes in prn_messages_complete.items():
     for subframe in subframes:
         osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'])
-        print(osnma)
+        # print(osnma)
         if osnma.NMA_status == 0:
             continue
         storage.add(osnma)
 
 print_separator()
-pp(storage.DSMs)
-
-verifier = OSNMA_Verifier(open(public_key_pem_filename).read())
+# pp(storage.DSMs)
 
 print_separator()
 
