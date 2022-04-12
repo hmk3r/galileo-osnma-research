@@ -1,0 +1,545 @@
+Filename not provided, using default osnma-capture.csv
+Public key file not provided, using default OSNMA_PublicKey_Testing.pem
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 4
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 5
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 6
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 7
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> KROOT WN: 1178
+    -> KROOT DOW: 110
+    -> Alpha(random): 0x25d3964da3a2
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 4
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 5
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 6
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 7
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> KROOT WN: 1178
+    -> KROOT DOW: 111
+    -> Alpha(random): 0x25d3964da3a2
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 5
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 6
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 7
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> KROOT WN: 1178
+    -> KROOT DOW: 110
+    -> Alpha(random): 0x25d3964da3a2
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 1
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 4
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 5
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 6
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 7
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> KROOT WN: 1178
+    -> KROOT DOW: 111
+    -> Alpha(random): 0x25d3964da3a2
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 4
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 6
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 7
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> KROOT WN: 1178
+    -> KROOT DOW: 111
+    -> Alpha(random): 0x25d3964da3a2
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 4
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 5
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 6
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 7
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> KROOT WN: 1178
+    -> KROOT DOW: 111
+    -> Alpha(random): 0x25d3964da3a2
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+
+--------------------
+
+{7: {'header': -> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> KROOT WN: 1178
+    -> KROOT DOW: 110
+    -> Alpha(random): 0x25d3964da3a2
+,
+     'DSMs': ['00100010010100000100100100100001000001001001101001101110001001011101001110010110010011011010001110100010',
+              '10110110100000000111010101100110000110010110110010000011011010101110100000000101000100101001011101111000',
+              None,
+              None,
+              '00110011110000010011011001010111101010010101101000101010000010000010001001101000001010100011101011100101',
+              '00101110000001010110011001011100100111111000000000101111010101011010011100011010111011101001011111101111',
+              '01101011000001010100011010101100010101001110000000111011111111000111100011001111101011100000111010101100',
+              '10100110011010101101101110011100110001001001010000111101000001100100100110110010010101111101010101010000'],
+     'complete': False},
+ 8: {'header': -> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> KROOT WN: 1178
+    -> KROOT DOW: 111
+    -> Alpha(random): 0x25d3964da3a2
+,
+     'DSMs': ['00100010010100000100100100100001000001001001101001101111001001011101001110010110010011011010001110100010',
+              '11010100100110011010110111101000001100110010101000000111001100010001011011110101001100100010100010111111',
+              '00011110111101101000010001000110011101000001000011001011100111101000111100010000000101010001101011110010',
+              '10101001100100110101101000001101000101000101100011000101111011001010011000011001001001111110101100100100',
+              '01011101000110001101011101101010000011101111010001110010000100001111110111010001010100100101001100100001',
+              '11001010110100100111001001100111010001111011010001101000100001100010000000001011001101100101001000100101',
+              '11110011000011011111001000101001100110010111111111000001110111001111100001010010011101101011101101100011',
+              '01011111101101011001101111000000010100100000100111011010001010111010001010100101100110100110101100001010'],
+     'complete': True}}
+
+--------------------
+
+M(232 bits): 0x52504921049a6f25d3964da3a2d499ade8332a073116f53228bf1ef684
+Sig(512 bits): 0x467410cb9e8f10151af2a9935a0d1458c5eca61927eb245d18d76a0ef47210fdd1525321cad2726747b46886200b365225f30df229997fc1dcf85276bb635fb5
+Root key(128 bits): 0xd499ade8332a073116f53228bf1ef684
+Pad(88 bits): 0x9bc05209da2ba2a59a6b0a
+T(88 bits): 0x9bc05209da2ba2a59a6b0a
+Pad == T? True
+Signature Correct? True
