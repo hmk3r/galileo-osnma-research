@@ -27,7 +27,7 @@ class OSNMA:
         2: "Reserved",
         3: "Reserved"
     }
-
+    TAG_INFO_SIZE = 16
     NB_OFFSET = 6
 
     @staticmethod
@@ -48,11 +48,15 @@ class OSNMA:
         else:
             return (value - 5) * 4 + 20
 
+    LAST_KNOWN_FIELD_VALUES_PER_DSM = dict()
+
     def __init__(self, prn, hk_root_str, mack_str) -> None:
         self._hk_root_str = hk_root_str
         self._mack_str = mack_str
         self.prn = prn
         self.NMAS = int(hk_root_str[:2], 2)
+        if self.NMAS == 0:         
+            return
         self.CID = int(hk_root_str[2:4], 2)
         self.CPKS = int(hk_root_str[4:7], 2)
         self.NMA_header_reserved = int(hk_root_str[7:8], 2)
@@ -74,8 +78,66 @@ class OSNMA:
             self.WNK = int(hk_root_str[52:64], 2)
             self.TOWHK = int(hk_root_str[64:72], 2)
             self.alpha = hex(int(hk_root_str[72:120], 2))
-
             self.KS_Real = self.KEY_SIZE_ENUM(self.KS)
+            self.TS_Real = self.TS_ENUM(self.TS)
+            self.number_of_tags = (480 - self.KS_Real) // (self.TS_Real + 16)
+
+            if self.DSM_ID not in OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM:
+                OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID] = dict()
+            
+            total_tag_size = self.TS + OSNMA.TAG_INFO_SIZE
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TS'] = self.TS
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TS_Real'] = self.TS_Real
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['KS'] = self.KS
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['KS_Real'] = self.KS_Real
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['N_t'] = self.number_of_tags
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TTS'] = total_tag_size
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['Key_Start'] = self.number_of_tags * total_tag_size
+        else:
+            self.NB = None
+            self.PKID = None
+            self.CIDKR = None
+            self.reserved_dsm_kroot = None
+            self.HF = None
+            self.MF = None
+            self.KS = None
+            self.TS = None
+            self.MACKLT = None
+            self.reserved_dsm_kroot_2 = None
+            self.WNK = None
+            self.TOWHK = None
+            self.alpha = None
+            self.KS_Real = None
+            self.TS_Real = None
+            self.number_of_tags = None
+        
+        if self.DSM_ID in OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM:
+            l_t = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TS_Real']
+            l_k = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['KS_Real']
+            
+            self.number_of_tags = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['N_t']
+            total_tag_size = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TTS']
+            ti_start = total_tag_size
+            key_start = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['Key_Start']
+
+            self.TAG_0 = mack_str[:l_t]
+            self.MACSEQ = mack_str[l_t:l_t + 12]
+            self.reserved_mack_2 = mack_str[l_t + 12:ti_start]
+            self.tags_and_info = tuple([(
+                mack_str[ti_start + i * total_tag_size:ti_start + i * total_tag_size + l_t],
+                mack_str[ti_start + i * total_tag_size + l_t:ti_start + i * total_tag_size + l_t + OSNMA.TAG_INFO_SIZE]
+            ) for i in range(self.number_of_tags - 1)])
+
+            self.TESLA_key = mack_str[key_start:key_start + l_k]
+            self.MACKs_padding = mack_str[key_start + l_k:480]
+        else:
+            self.number_of_tags = None
+            self.TAG_0 = None
+            self.MACSEQ = None
+            self.reserved_mack_2 = None
+            self.tags_and_info = tuple()
+            self.TESLA_key = None
+            self.MACKs_padding = None
 
     
     def copy(self):
@@ -105,5 +167,18 @@ class OSNMA:
             s += f'    -> WNK: {self.WNK}\n'
             s += f'    -> TOWHK: {self.TOWHK}\n'
             s += f'    -> Alpha(random): {self.alpha}\n'
+        s += f'  -> MACK messages: '
+
+        if self.TAG_0 is None:
+            s += f'DSM-KROOT not received yet, no key/tag length available'
+        else:
+            s += '\n'
+            s += f'    -> Tag_0: {hex(int(self.TAG_0, 2))}\n'
+            s += f'    -> MACSEQ: {self.MACSEQ}\n'
+            s += f'    -> Reserved: {self.reserved_mack_2}\n'
+            s += f'    -> Tag&Info\n'
+            for tag, info in self.tags_and_info:
+                s += f'      -> Tag: {hex(int(tag, 2))}; Info: {info}\n'
+            s += f'    -> TESLA Key: {hex(int(self.TESLA_key, 2))}\n'
 
         return s

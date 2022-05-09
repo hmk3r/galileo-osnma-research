@@ -71,18 +71,29 @@ for prn, messages in prn_messages.items():
 
 storage = OSNMA_Storage()
 for prn, subframes in prn_messages_complete.items():
+    print_separator()
     for subframe in subframes:
         osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'])
-        # print(osnma)
+        print(osnma)
         if osnma.NMAS == 0:
             continue
         storage.add(osnma)
 
 print_separator()
-# pp(storage.DSMs)
+pp(storage.DSMs)
 
+print_separator()
+print('DSM-PKR Verification:') # TODO
 print_separator()
 
 for DSM_id, c in storage.get_all():
     verifier.verify(c['DSMs'], c['header'])
-    
+
+print_separator()
+print('TESLA Key Verification:') # TODO
+print_separator()
+print('MAC Look-up Table Verification:') # TODO
+print_separator()
+print('MACSEQ Verification:') # TODO
+print_separator()
+print('Tag Verification:') # TODO

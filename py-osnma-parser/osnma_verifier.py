@@ -68,7 +68,8 @@ class OSNMA_Verifier:
 
         is_valid_sig = self._verify_sig(m_bytes, sig_bytes, public_key)
 
-
+        print('DSM-KROOT Verification:')
+        print()
         print(f'M({len(m_bytes) * 8} bits): 0x{m_bytes.hex()}')
         print(f'Sig({len(sig_bytes) * 8} bits): 0x{sig_bytes.hex()}')
         print(f'Root key({len(root_key_bytes) * 8} bits): 0x{root_key_bytes.hex()}')

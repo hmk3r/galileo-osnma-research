@@ -1,0 +1,945 @@
+Filename not provided, using default ./data/osnma-capture.csv
+Public key directory not provided, using default ./osnma-keys
+Loaded Public Key - ID: 2, Size: 256 bits, Curve NIST P-256
+
+--------------------
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 4
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 5
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 6
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 7
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1178
+    -> TOWHK: 110
+    -> Alpha(random): 0x25d3964da3a2
+  -> MACK messages: 
+    -> Tag_0: 0x6e2bf57418
+    -> MACSEQ: 110000010110
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xe83182c7a2; Info: 0101000110001010
+      -> Tag: 0x8f44a315a7; Info: 0110010000010100
+      -> Tag: 0x2b4ec8281b; Info: 1010011010010011
+      -> Tag: 0x50374d266a; Info: 1101100100001111
+      -> Tag: 0x4cd5b21fe8; Info: 0000101101010100
+    -> TESLA Key: 0x3fd016a92d2e6783001e8e8d9c8bc070
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 4
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 5
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 6
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 7
+  -> MACK messages: DSM-KROOT not received yet, no key/tag length available
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1178
+    -> TOWHK: 111
+    -> Alpha(random): 0x25d3964da3a2
+  -> MACK messages: 
+    -> Tag_0: 0xaa6079b3c9
+    -> MACSEQ: 101011110110
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x67935ec61c; Info: 1101110101010101
+      -> Tag: 0x8c39baaaa5; Info: 1110110000010100
+      -> Tag: 0x554bd8281f; Info: 1110010001111000
+      -> Tag: 0x503fc8f034; Info: 1101011100111111
+      -> Tag: 0xe069ae7fe8; Info: 0001101101000011
+    -> TESLA Key: 0xffd03687763a60830026db445d378070
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0x6cbdba93f7
+    -> MACSEQ: 011001101010
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x27eecd59a1; Info: 1001001011011111
+      -> Tag: 0xb34325be1b; Info: 1100010001001000
+      -> Tag: 0x7c37889001; Info: 1010100010001110
+      -> Tag: 0x2003511d6b; Info: 0110010101000010
+      -> Tag: 0x3ad6ca8420; Info: 1010100011110011
+    -> TESLA Key: 0x84151e770069c00730de348acb24543
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+  -> MACK messages: 
+    -> Tag_0: 0xf33be3014e
+    -> MACSEQ: 001101001101
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x29c69a878; Info: 0001011000101110
+      -> Tag: 0x50f02c5da6; Info: 0001100000010100
+      -> Tag: 0xbb4c302823; Info: 0100000010011101
+      -> Tag: 0x5046813be3; Info: 1110001110111111
+      -> Tag: 0x77c7c77fe8; Info: 0000010100110001
+    -> TESLA Key: 0xffd00a62d9e5d54300168f74300ac071
+
+-> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0x1fd827a842
+    -> MACSEQ: 000100011101
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x508423a80a; Info: 1011111101001001
+      -> Tag: 0x50157e9316; Info: 1101100001001000
+      -> Tag: 0x262db09005; Info: 1001000001100001
+      -> Tag: 0x200b20c291; Info: 0011001100000010
+      -> Tag: 0x8522660420; Info: 1011001011010000
+    -> TESLA Key: 0x84165a01d7fd3807133c29f20f1c541
+
+
+--------------------
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 5
+  -> MACK messages: 
+    -> Tag_0: 0x78b466c9bc
+    -> MACSEQ: 011001001101
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x9378c9a6cf; Info: 1011000110001100
+      -> Tag: 0x4d9f631999; Info: 1101000000010100
+      -> Tag: 0x3333a0281e; Info: 1001101100000110
+      -> Tag: 0x503d360d79; Info: 0101110000111111
+      -> Tag: 0x1af2b87fe8; Info: 0001111011100000
+    -> TESLA Key: 0xffd03dc1ff289c83000fbf104223c6b0
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 6
+  -> MACK messages: 
+    -> Tag_0: 0x27cbd11eeb
+    -> MACSEQ: 110110011111
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x3dd7b3e743; Info: 1100100001101010
+      -> Tag: 0xce8790d4b1; Info: 1100110001010100
+      -> Tag: 0xa96398a81a; Info: 0001001110010001
+      -> Tag: 0x503427237e; Info: 1111111110010010
+      -> Tag: 0x46fdff2420; Info: 1011000010101010
+    -> TESLA Key: 0x48416155d3568b06b0caf22916e28480
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 7
+  -> MACK messages: 
+    -> Tag_0: 0x9546acd646
+    -> MACSEQ: 101000110100
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xac8d4687ec; Info: 0101000100000111
+      -> Tag: 0xfd8a20fc4; Info: 1000110000010100
+      -> Tag: 0x1f89182818; Info: 1000101010011011
+      -> Tag: 0x50311536da; Info: 0110011100001111
+      -> Tag: 0x6db4ce1fe8; Info: 0000110011101101
+    -> TESLA Key: 0x3fd019daef18eac30037e176346d46b0
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1178
+    -> TOWHK: 110
+    -> Alpha(random): 0x25d3964da3a2
+  -> MACK messages: 
+    -> Tag_0: 0x11c10bfbc0
+    -> MACSEQ: 111111111111
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xf781ffe7bf; Info: 1100100100110111
+      -> Tag: 0xcf7f926fcb; Info: 1010100001010100
+      -> Tag: 0xdf9750a81d; Info: 0000110010011110
+      -> Tag: 0x503a193ce0; Info: 1010101111100010
+      -> Tag: 0x79c157c420; Info: 1010111110010101
+    -> TESLA Key: 0x88415f2b79c22f06b0c9bd04a41fc480
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0xa051ad7668
+    -> MACSEQ: 110100000110
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xecd1a0c69d; Info: 0010100110000000
+      -> Tag: 0x8d3a53012c; Info: 0111010000010100
+      -> Tag: 0x258e8281c; Info: 0011001101101110
+      -> Tag: 0x503866ddbe; Info: 0000111000001111
+      -> Tag: 0xbb7c1c1fe8; Info: 0000001010101100
+    -> TESLA Key: 0x3fd00558a459f383003f1b2bb001c6b0
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+  -> MACK messages: 
+    -> Tag_0: 0x13a5307b6a
+    -> MACSEQ: 111110001111
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xf6d5f1e715; Info: 0011101111010111
+      -> Tag: 0xce2a77ae3e; Info: 1101000001010100
+      -> Tag: 0x5c7da0a81c; Info: 1010010010000101
+      -> Tag: 0x5039490bed; Info: 0011110110100010
+      -> Tag: 0x17da7b4420; Info: 1010111100100101
+    -> TESLA Key: 0x88415e4baa49f446b0c02a176e4b0480
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0xb2bdbe8b18
+    -> MACSEQ: 000010000010
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x1630104721; Info: 1100111100011000
+      -> Tag: 0x8e439e3097; Info: 1111000000010100
+      -> Tag: 0x612fe0281d; Info: 0100110100100100
+      -> Tag: 0x503a9a48d9; Info: 1000010100111111
+      -> Tag: 0x91b30a7fe8; Info: 0001101101111111
+    -> TESLA Key: 0xffd036ffc6c4a4c30037bc84cf8d86b0
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 4
+  -> MACK messages: 
+    -> Tag_0: 0xd6670bb4a9
+    -> MACSEQ: 111111111001
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x6953ff2636; Info: 1010101100000100
+      -> Tag: 0x4c6d5609e5; Info: 0111110001010100
+      -> Tag: 0x13caf8a81a; Info: 0001001110100110
+      -> Tag: 0x5034274cf6; Info: 0010011100010010
+      -> Tag: 0x99ec4e2420; Info: 1011001010111101
+    -> TESLA Key: 0x4841657a76cc0a06b0d019ad75fe0480
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 5
+  -> MACK messages: 
+    -> Tag_0: 0xae8e0e2e79
+    -> MACSEQ: 000111010111
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x5cf23ae611; Info: 1001001000001010
+      -> Tag: 0xcc23241405; Info: 0111010000010100
+      -> Tag: 0x280ae8281b; Info: 0010010111010000
+      -> Tag: 0x50364ba138; Info: 1010011001011111
+      -> Tag: 0x42714cbfe8; Info: 0001001011010010
+    -> TESLA Key: 0x7fd025a5e47b5c830024892fb04686b0
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 6
+  -> MACK messages: 
+    -> Tag_0: 0xbc7b3cdd09
+    -> MACSEQ: 000111110000
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xba123e06b8; Info: 1110101010010111
+      -> Tag: 0xd71d52e10; Info: 0111100001010100
+      -> Tag: 0x5c20f0a81e; Info: 0111011010010110
+      -> Tag: 0x503ced2d20; Info: 0101011101010010
+      -> Tag: 0x5a40aea420; Info: 1010101101000110
+    -> TESLA Key: 0x4841568ddd8f8846b0fb085e65f48480
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 7
+  -> MACK messages: 
+    -> Tag_0: 0x1407dbf9d9
+    -> MACSEQ: 110111001111
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xf3b3b9e72a; Info: 1000010100101001
+      -> Tag: 0xce550a52ad; Info: 0001110000100100
+      -> Tag: 0xa55a384817; Info: 0101110001101011
+      -> Tag: 0x902eb8d638; Info: 0000101101101111
+      -> Tag: 0xac7016dfe8; Info: 0001001000111101
+    -> TESLA Key: 0xbfd0247a7dc912030032e01cadc546b0
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1178
+    -> TOWHK: 111
+    -> Alpha(random): 0x25d3964da3a2
+  -> MACK messages: 
+    -> Tag_0: 0x792019bb62
+    -> MACSEQ: 110101101000
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x76c5ad0786; Info: 0111000100011101
+      -> Tag: 0xf0ce23b42; Info: 0001100001010100
+      -> Tag: 0x768430a818; Info: 0010111011101111
+      -> Tag: 0x50305ddf4e; Info: 1110011000000010
+      -> Tag: 0xbe9dcc0420; Info: 1011111001011000
+    -> TESLA Key: 0x8417cb04a822546b0eeb003f5994480
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0xa1870745b4
+    -> MACSEQ: 111110001011
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x8b69f167c9; Info: 1100000101101100
+      -> Tag: 0xcf9382d83a; Info: 1000010000100100
+      -> Tag: 0xb075084811; Info: 1100100101101111
+      -> Tag: 0x902392dfe7; Info: 1011000100101111
+      -> Tag: 0xbfcf625fe8; Info: 0000110000111010
+    -> TESLA Key: 0xbfd018751b11354300258190d2c646b0
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+  -> MACK messages: 
+    -> Tag_0: 0xc82e3a8010
+    -> MACSEQ: 000010110110
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x2016d833; Info: 0001110100111111
+      -> Tag: 0xb0663a7e95; Info: 1011000001010100
+      -> Tag: 0xfd2b60a864; Info: 1111000010110001
+      -> Tag: 0x50c9e163c7; Info: 1011000100010010
+      -> Tag: 0xc78f622420; Info: 1010111111111001
+    -> TESLA Key: 0x48415ff234862206b30b3b94f14dc480
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0xe8d1496b21
+    -> MACSEQ: 000011101111
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xd6421de94b; Info: 0101101011110011
+      -> Tag: 0xd296b5e751; Info: 1101010000100100
+      -> Tag: 0xcea3a84813; Info: 1100000101001011
+      -> Tag: 0x9027829684; Info: 0110111011101111
+      -> Tag: 0x2d08dddfe8; Info: 0001011101100001
+    -> TESLA Key: 0xbfd02ec2b1b96683001b018f59bf46b1
+
+-> PRN: 26
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 4
+  -> MACK messages: 
+    -> Tag_0: 0xf0e28cbff1
+    -> MACSEQ: 101110010011
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x7fe37268a1; Info: 0011100010010100
+      -> Tag: 0xd1427128d3; Info: 1001010001010100
+      -> Tag: 0x51a728a823; Info: 0011101000111011
+      -> Tag: 0x5046747765; Info: 1100011100100010
+      -> Tag: 0xeecb8e4420; Info: 1011011001111101
+    -> TESLA Key: 0x88416cfb54d72bc6b10a56b240b64480
+
+
+--------------------
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 6
+  -> MACK messages: 
+    -> Tag_0: 0x1163710133
+    -> MACSEQ: 111101110101
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x267eea623; Info: 0010011010010001
+      -> Tag: 0x4c464d22e2; Info: 0111100000110000
+      -> Tag: 0x45c4f06003; Info: 0011100111100100
+      -> Tag: 0xc00673c913; Info: 1000001001111111
+      -> Tag: 0x922704ffe8; Info: 0000110000111100
+    -> TESLA Key: 0xffd01878de61068540e8cc97a6f8c7f0
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 7
+  -> MACK messages: 
+    -> Tag_0: 0xd7e72cc25f
+    -> MACSEQ: 011000100111
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x84bec4e659; Info: 1010101110001000
+      -> Tag: 0xccb3571193; Info: 0110110001001000
+      -> Tag: 0x2326d89000; Info: 0111011000001000
+      -> Tag: 0x2000ec10d7; Info: 0100000111000000
+      -> Tag: 0x21ae8380a0; Info: 0111000101010111
+    -> TESLA Key: 0x140e2af17f81187f0c9433164830240
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1178
+    -> TOWHK: 111
+    -> Alpha(random): 0x25d3964da3a2
+  -> MACK messages: 
+    -> Tag_0: 0x85c6984f32
+    -> MACSEQ: 111010111011
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x9e65d76637; Info: 0011010000011001
+      -> Tag: 0xcc6e6832c5; Info: 0001000000110000
+      -> Tag: 0x658a206004; Info: 0110101001111000
+      -> Tag: 0xc008d4f150; Info: 1101001010011111
+      -> Tag: 0xe2a1a53fe8; Info: 0001001111000100
+    -> TESLA Key: 0x7fd02788eb2493c540c9bcb71cbc87f0
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0xe3ec5aa95
+    -> MACSEQ: 001010011110
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x552a53c6f2; Info: 0110111001101110
+      -> Tag: 0x8de4dcdd5e; Info: 0111010001001000
+      -> Tag: 0xbabce89002; Info: 0101010111101101
+      -> Tag: 0x2004abdbf2; Info: 1101101011110000
+      -> Tag: 0xb7e5b5e0a0; Info: 0110001010110010
+    -> TESLA Key: 0xc140c56559713207f0c30aed01814240
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 2
+  -> MACK messages: 
+    -> Tag_0: 0x2bec5e51b1
+    -> MACSEQ: 000010111100
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xa3621786c4; Info: 0010111010100101
+      -> Tag: 0xd885d4bd0; Info: 1010100000110000
+      -> Tag: 0x97a1506007; Info: 0110110100100111
+      -> Tag: 0xc00eda4f38; Info: 1000000000111111
+      -> Tag: 0x9e71007fe8; Info: 0000011111110110
+    -> TESLA Key: 0xffd00fec586c63c540f8fa7ed308c7f0
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0xa460691b64
+    -> MACSEQ: 000100111001
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x36c82727b5; Info: 0000110110000000
+      -> Tag: 0x4f6a1b000e; Info: 0010100001001000
+      -> Tag: 0x1c509000; Info: 0010110100011000
+      -> Tag: 0x20005a30c5; Info: 0100011000000000
+      -> Tag: 0x618a8c00a0; Info: 0110001000011001
+    -> TESLA Key: 0x140c432934ac187f0f3b5abb320c240
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 4
+  -> MACK messages: 
+    -> Tag_0: 0x4f3fea3593
+    -> MACSEQ: 011001011010
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x6b26cb4735; Info: 0001000110011101
+      -> Tag: 0x8e6a233aac; Info: 0101100000110000
+      -> Tag: 0x7558b06006; Info: 1011101111101100
+      -> Tag: 0xc00d77d862; Info: 0011001111011111
+      -> Tag: 0xb0c467bfe8; Info: 0000000001111001
+    -> TESLA Key: 0x7fd000f364d0da4540c52506357f87f0
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 5
+  -> MACK messages: 
+    -> Tag_0: 0x4fa06d04a6
+    -> MACSEQ: 011001110110
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x94ccec7af; Info: 0000101110100000
+      -> Tag: 0x8f5e17407f; Info: 0010110001001000
+      -> Tag: 0x80fe589002; Info: 0111100001101111
+      -> Tag: 0x2004f0df1b; Info: 1001110100110000
+      -> Tag: 0xbe373a60a0; Info: 0111000101110000
+    -> TESLA Key: 0xc140e2e0f2867d87f0f87b75b977c240
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 6
+  -> MACK messages: 
+    -> Tag_0: 0x94ac1cab4f
+    -> MACSEQ: 111000110100
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x569fc68782; Info: 1000111011100011
+      -> Tag: 0xf051dc6bf; Info: 0001110000110000
+      -> Tag: 0x8d7e386007; Info: 1101111001001011
+      -> Tag: 0xc00fbc96da; Info: 1101010000001111
+      -> Tag: 0x2db5a81fe8; Info: 0001000001111100
+    -> TESLA Key: 0x3fd020f81fe7518540c321ca655887f0
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 7
+  -> MACK messages: 
+    -> Tag_0: 0xcb4102b3de
+    -> MACSEQ: 110111011111
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x67bdbbf863; Info: 1011100110111001
+      -> Tag: 0xf0c77372de; Info: 1000000001001000
+      -> Tag: 0xe5bd009003; Info: 0111001101000000
+      -> Tag: 0x2006e680c1; Info: 0010001111000000
+      -> Tag: 0x1824780a1; Info: 1000000001011110
+    -> TESLA Key: 0x14300bd77db2f87f311fa9512a58240
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1178
+    -> TOWHK: 111
+    -> Alpha(random): 0x25d3964da3a2
+  -> MACK messages: 
+    -> Tag_0: 0x2ad312b18d
+    -> MACSEQ: 010001011100
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x631a8b8816; Info: 1000110100001111
+      -> Tag: 0x102d1a1fe1; Info: 0111100000110000
+      -> Tag: 0x3fc2f06001; Info: 1110000001011111
+      -> Tag: 0xc003c0be81; Info: 1011101011011111
+      -> Tag: 0x7d0375bfe8; Info: 0000011110000011
+    -> TESLA Key: 0x7fd00f06fabba005413544ae9e10c7f1
+
+-> PRN: 31
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0xa644dfa121
+    -> MACSEQ: 100101111101
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x42432fa9e3; Info: 0101010111100001
+      -> Tag: 0x53c6abc36e; Info: 1011100001001000
+      -> Tag: 0x86dd709002; Info: 1110010101000100
+      -> Tag: 0x2005ca89ce; Info: 1010000011010000
+      -> Tag: 0x139d41a0a0; Info: 1000010010001001
+    -> TESLA Key: 0x41410913b2661a47f10e14d48178c240
+
+
+--------------------
+
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+-> PRN: 21
+  -> OSNMA Disabled for this satelite
+
+--------------------
+
+{7: {'header': -> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 7
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1178
+    -> TOWHK: 110
+    -> Alpha(random): 0x25d3964da3a2
+  -> MACK messages: 
+    -> Tag_0: 0x6e2bf57418
+    -> MACSEQ: 110000010110
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0xe83182c7a2; Info: 0101000110001010
+      -> Tag: 0x8f44a315a7; Info: 0110010000010100
+      -> Tag: 0x2b4ec8281b; Info: 1010011010010011
+      -> Tag: 0x50374d266a; Info: 1101100100001111
+      -> Tag: 0x4cd5b21fe8; Info: 0000101101010100
+    -> TESLA Key: 0x3fd016a92d2e6783001e8e8d9c8bc070
+,
+     'DSMs': ['00100010010100000100100100100001000001001001101001101110001001011101001110010110010011011010001110100010',
+              '10110110100000000111010101100110000110010110110010000011011010101110100000000101000100101001011101111000',
+              None,
+              None,
+              '00110011110000010011011001010111101010010101101000101010000010000010001001101000001010100011101011100101',
+              '00101110000001010110011001011100100111111000000000101111010101011010011100011010111011101001011111101111',
+              '01101011000001010100011010101100010101001110000000111011111111000111100011001111101011100000111010101100',
+              '10100110011010101101101110011100110001001001010000111101000001100100100110110010010101111101010101010000'],
+     'complete': False},
+ 8: {'header': -> PRN: 1
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 8
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1178
+    -> TOWHK: 111
+    -> Alpha(random): 0x25d3964da3a2
+  -> MACK messages: 
+    -> Tag_0: 0xaa6079b3c9
+    -> MACSEQ: 101011110110
+    -> Reserved: 
+    -> Tag&Info
+      -> Tag: 0x67935ec61c; Info: 1101110101010101
+      -> Tag: 0x8c39baaaa5; Info: 1110110000010100
+      -> Tag: 0x554bd8281f; Info: 1110010001111000
+      -> Tag: 0x503fc8f034; Info: 1101011100111111
+      -> Tag: 0xe069ae7fe8; Info: 0001101101000011
+    -> TESLA Key: 0xffd03687763a60830026db445d378070
+,
+     'DSMs': ['00100010010100000100100100100001000001001001101001101111001001011101001110010110010011011010001110100010',
+              '11010100100110011010110111101000001100110010101000000111001100010001011011110101001100100010100010111111',
+              '00011110111101101000010001000110011101000001000011001011100111101000111100010000000101010001101011110010',
+              '10101001100100110101101000001101000101000101100011000101111011001010011000011001001001111110101100100100',
+              '01011101000110001101011101101010000011101111010001110010000100001111110111010001010100100101001100100001',
+              '11001010110100100111001001100111010001111011010001101000100001100010000000001011001101100101001000100101',
+              '11110011000011011111001000101001100110010111111111000001110111001111100001010010011101101011101101100011',
+              '01011111101101011001101111000000010100100000100111011010001010111010001010100101100110100110101100001010'],
+     'complete': True}}
+
+--------------------
+
+DSM-KROOT Verification:
+
+M(232 bits): 0x52504921049a6f25d3964da3a2d499ade8332a073116f53228bf1ef684
+Sig(512 bits): 0x467410cb9e8f10151af2a9935a0d1458c5eca61927eb245d18d76a0ef47210fdd1525321cad2726747b46886200b365225f30df229997fc1dcf85276bb635fb5
+Root key(128 bits): 0xd499ade8332a073116f53228bf1ef684
+Pad(88 bits): 0x9bc05209da2ba2a59a6b0a
+T(88 bits): 0x9bc05209da2ba2a59a6b0a
+Pad == T? True
+Signature Correct? True
