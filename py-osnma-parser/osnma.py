@@ -52,14 +52,14 @@ class OSNMA:
         self._hk_root_str = hk_root_str
         self._mack_str = mack_str
         self.prn = prn
-        self.NMA_status = int(hk_root_str[:2], 2)
+        self.NMAS = int(hk_root_str[:2], 2)
         self.CID = int(hk_root_str[2:4], 2)
-        self.chain_status = int(hk_root_str[4:7], 2)
+        self.CPKS = int(hk_root_str[4:7], 2)
         self.NMA_header_reserved = int(hk_root_str[7:8], 2)
         self.DSM_ID = int(hk_root_str[8:12], 2)
         self.DSM_block_ID = int(hk_root_str[12:16], 2)
         if self.DSM_ID > 11:
-            raise NotImplementedError('DSK-PKR is not yet specified')
+            raise NotImplementedError('DSK-PKR not implemented')
         if self.DSM_block_ID == 0:
             self.NB = int(hk_root_str[16:20], 2) + self.NB_OFFSET
             self.PKID = int(hk_root_str[20:24], 2)
@@ -71,8 +71,8 @@ class OSNMA:
             self.TS = int(hk_root_str[36:40], 2)
             self.MACKLT = int(hk_root_str[40:48], 2)
             self.reserved_dsm_kroot_2 = int(hk_root_str[48:52], 2)
-            self.KROOTWN = int(hk_root_str[52:64], 2)
-            self.KROOTDOW = int(hk_root_str[64:72], 2)
+            self.WNK = int(hk_root_str[52:64], 2)
+            self.TOWHK = int(hk_root_str[64:72], 2)
             self.alpha = hex(int(hk_root_str[72:120], 2))
 
             self.KS_Real = self.KEY_SIZE_ENUM(self.KS)
@@ -83,12 +83,12 @@ class OSNMA:
 
     def __repr__(self) -> str:
         s = f'-> PRN: {self.prn}\n'
-        if self.NMA_status == 0:
+        if self.NMAS == 0:
             return s + "  -> OSNMA Disabled for this satelite"
         
         s += f'  -> HKROOT:\n'
-        s += f'    -> NMA Status: {self.NMA_STATUS_ENUM.get(self.NMA_status, None)}\n'
-        s += f'    -> Chain Status: {self.CHAIN_STATUS_ENUM.get(self.chain_status, None)}\n'
+        s += f'    -> NMA Status: {self.NMA_STATUS_ENUM.get(self.NMAS, None)}\n'
+        s += f'    -> Chain Status: {self.CHAIN_STATUS_ENUM.get(self.CPKS, None)}\n'
         s += f'    -> Chain ID: {self.CID}\n'
         s += f'    -> Reserved: {self.NMA_header_reserved}\n'
         s += f'    -> DSM ID: {self.DSM_ID}\n'
@@ -102,8 +102,8 @@ class OSNMA:
             s += f'    -> Key Size (KS): {self.KEY_SIZE_ENUM(self.KS)}\n'
             s += f'    -> MAC Size (TS): {self.TS_ENUM(self.TS)}\n'
             s += f'    -> MAC Look-up Table (MACLT): {self.MACKLT}\n'
-            s += f'    -> KROOT WN: {self.KROOTWN}\n'
-            s += f'    -> KROOT DOW: {self.KROOTDOW}\n'
+            s += f'    -> WNK: {self.WNK}\n'
+            s += f'    -> TOWHK: {self.TOWHK}\n'
             s += f'    -> Alpha(random): {self.alpha}\n'
 
         return s

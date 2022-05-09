@@ -74,7 +74,7 @@ for prn, subframes in prn_messages_complete.items():
     for subframe in subframes:
         osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'])
         # print(osnma)
-        if osnma.NMA_status == 0:
+        if osnma.NMAS == 0:
             continue
         storage.add(osnma)
 
