@@ -30,14 +30,14 @@ verifier = OSNMA_Verifier(public_key_dir)
 with open(filename) as f:
     reader = csv.reader(f)
     for row in reader:
-        _, prn, msg_type, hk_root, mack = row
+        _, prn, msg_type, hk_root, mack, navdata = row
         
         msg_type = int(msg_type)
 
         if prn not in prn_messages:
             prn_messages[prn] = list()
 
-        prn_messages[prn].append((msg_type, hk_root, mack))
+        prn_messages[prn].append((msg_type, hk_root, mack, navdata))
 
 prn_messages_complete = dict()
 
@@ -50,7 +50,7 @@ for prn, messages in prn_messages.items():
     }
     fields = default_fields.copy()
     expected_message_type_index = 0
-    for msg_type, hk_root, mack in messages:
+    for msg_type, hk_root, mack, navdata in messages:
 
         if msg_type not in GALILEO_INAV_MESSAGE_SEQUENCE[expected_message_type_index]:
             expected_message_type_index = 0
