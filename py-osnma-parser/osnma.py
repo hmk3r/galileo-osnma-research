@@ -1,4 +1,26 @@
+class GST:
+    SECONDS_IN_HOUR = 3600
+    SECONDS_IN_WEEK = 7 * 24 * SECONDS_IN_HOUR
+
+    def __init__(self, wn, tow) -> None:
+        self.wn = wn
+        self.tow = tow
+
+    def add_time(self, seconds):
+        new_tow = self.tow + seconds
+        wn_adj = new_tow // GST.SECONDS_IN_WEEK
+
+        new_wn = self.wn + wn_adj
+        new_tow = new_tow % GST.SECONDS_IN_WEEK
+
+        return GST(new_wn, new_tow)
+
+    def __repr__(self) -> str:
+        return f'WN: {self.wn}, TOW: {self.tow}'
+
+
 class OSNMA:
+    KROOT_GST_TIME_DELTA = -30
     NMA_STATUS_ENUM = {
         0: "Reserved/Not in use",
         1: "Test",
@@ -50,9 +72,10 @@ class OSNMA:
 
     LAST_KNOWN_FIELD_VALUES_PER_DSM = dict()
 
-    def __init__(self, prn, hk_root_str, mack_str) -> None:
+    def __init__(self, prn, hk_root_str, mack_str, gst_sf_str) -> None:
         self._hk_root_str = hk_root_str
         self._mack_str = mack_str
+        self._gst_sf_str = gst_sf_str
         self.prn = prn
         self.NMAS = int(hk_root_str[:2], 2)
         if self.NMAS == 0:         
@@ -62,6 +85,9 @@ class OSNMA:
         self.NMA_header_reserved = int(hk_root_str[7:8], 2)
         self.DSM_ID = int(hk_root_str[8:12], 2)
         self.DSM_block_ID = int(hk_root_str[12:16], 2)
+        self.WN = int(gst_sf_str[:12], 2)
+        self.TOW = int(gst_sf_str[12:], 2)
+        self.GST_SF = GST(self.WN, self.TOW)
         if self.DSM_ID > 11:
             raise NotImplementedError('DSK-PKR not implemented')
         if self.DSM_block_ID == 0:
@@ -77,7 +103,10 @@ class OSNMA:
             self.reserved_dsm_kroot_2 = int(hk_root_str[48:52], 2)
             self.WNK = int(hk_root_str[52:64], 2)
             self.TOWHK = int(hk_root_str[64:72], 2)
+            self.TOWK = self.TOWHK * GST.SECONDS_IN_HOUR
             self.alpha = hex(int(hk_root_str[72:120], 2))
+            self.GST_0 = GST(self.WNK, self.TOWK)
+            self.GST_SF_K = self.GST_0.add_time(OSNMA.KROOT_GST_TIME_DELTA)
             self.KS_Real = self.KEY_SIZE_ENUM(self.KS)
             self.TS_Real = self.TS_ENUM(self.TS)
             self.number_of_tags = (480 - self.KS_Real) // (self.TS_Real + 16)
@@ -93,6 +122,8 @@ class OSNMA:
             OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['N_t'] = self.number_of_tags
             OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TTS'] = total_tag_size
             OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['Key_Start'] = self.number_of_tags * total_tag_size
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_0'] = self.GST_0
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_SF_K'] = self.GST_SF_K
         else:
             self.NB = None
             self.PKID = None
@@ -106,7 +137,10 @@ class OSNMA:
             self.reserved_dsm_kroot_2 = None
             self.WNK = None
             self.TOWHK = None
+            self.TOWK = None
             self.alpha = None
+            self.GST_0 = None
+            self.GST_SF_K = None
             self.KS_Real = None
             self.TS_Real = None
             self.number_of_tags = None
@@ -120,6 +154,8 @@ class OSNMA:
             ti_start = total_tag_size
             key_start = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['Key_Start']
 
+            self.GST_0 = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_0']
+            self.GST_SF_K = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_SF_K']
             self.TAG_0 = mack_str[:l_t]
             self.MACSEQ = mack_str[l_t:l_t + 12]
             self.reserved_mack_2 = mack_str[l_t + 12:ti_start]
@@ -141,13 +177,15 @@ class OSNMA:
 
     
     def copy(self):
-        return OSNMA(self.prn, self._hk_root_str, self._mack_str)
+        return OSNMA(self.prn, self._hk_root_str, self._mack_str, self._gst_sf_str)
 
     def __repr__(self) -> str:
         s = f'-> PRN: {self.prn}\n'
         if self.NMAS == 0:
             return s + "  -> OSNMA Disabled for this satelite"
-        
+        s += f'  -> WN: {self.WN}\n'
+        s += f'  -> TOW: {self.TOW}\n'
+        s += f'  -> TOW: {self.GST_SF}\n'
         s += f'  -> HKROOT:\n'
         s += f'    -> NMA Status: {self.NMA_STATUS_ENUM.get(self.NMAS, None)}\n'
         s += f'    -> Chain Status: {self.CHAIN_STATUS_ENUM.get(self.CPKS, None)}\n'
@@ -166,6 +204,9 @@ class OSNMA:
             s += f'    -> MAC Look-up Table (MACLT): {self.MACKLT}\n'
             s += f'    -> WNK: {self.WNK}\n'
             s += f'    -> TOWHK: {self.TOWHK}\n'
+            s += f'    -> TOWK: {self.TOWK}\n'
+            s += f'    -> GST_0: {str(self.GST_0)}\n'
+            s += f'    -> GST_SF_K: {str(self.GST_SF_K)}\n'
             s += f'    -> Alpha(random): {self.alpha}\n'
         s += f'  -> MACK messages: '
 

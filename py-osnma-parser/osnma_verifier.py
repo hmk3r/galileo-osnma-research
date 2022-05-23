@@ -42,7 +42,7 @@ class OSNMA_Verifier:
 
         return valid
 
-    def verify(self, dsm: list, header: OSNMA):
+    def verify_kroot(self, dsm: list, header: OSNMA):
         public_key = self.public_keys[header.PKID]
         L_ds = public_key.pointQ.size_in_bits() * 2
 

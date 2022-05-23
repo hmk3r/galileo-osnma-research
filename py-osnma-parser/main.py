@@ -46,7 +46,8 @@ for prn, messages in prn_messages.items():
     subframes = []
     default_fields = {
         'hk_root': '',
-        'mack': ''
+        'mack': '',
+        'GST_SF': ''
     }
     fields = default_fields.copy()
     expected_message_type_index = 0
@@ -57,6 +58,10 @@ for prn, messages in prn_messages.items():
             fields = default_fields.copy()
             continue
         
+        if not fields['GST_SF'] and msg_type == 0 and navdata[6:8] == '10':
+            fields['GST_SF'] = navdata[-32:]
+            
+
         expected_message_type_index = (expected_message_type_index + 1) % len(GALILEO_INAV_MESSAGE_SEQUENCE) 
         fields['hk_root'] += hk_root
         fields['mack'] += mack
@@ -73,7 +78,7 @@ storage = OSNMA_Storage()
 for prn, subframes in prn_messages_complete.items():
     print_separator()
     for subframe in subframes:
-        osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'])
+        osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'], subframe['GST_SF'])
         print(osnma)
         if osnma.NMAS == 0:
             continue
@@ -87,7 +92,7 @@ print('DSM-PKR Verification:') # TODO
 print_separator()
 
 for DSM_id, c in storage.get_all():
-    verifier.verify(c['DSMs'], c['header'])
+    verifier.verify_kroot(c['DSMs'], c['header'])
 
 print_separator()
 print('TESLA Key Verification:') # TODO
