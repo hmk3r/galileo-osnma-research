@@ -79,7 +79,7 @@ for prn, subframes in prn_messages_complete.items():
     print_separator()
     for subframe in subframes:
         osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'], subframe['GST_SF'])
-        print(osnma)
+        # print(osnma)
         if osnma.NMAS == 0:
             continue
         storage.add(osnma)
@@ -96,6 +96,17 @@ for DSM_id, c in storage.get_all():
 
 print_separator()
 print('TESLA Key Verification:') # TODO
+osnma_message = storage.osnma_messages[8][-25]
+print(osnma_message.CID)
+verifier.verify_TESLA_key(osnma_message, storage.DSMs[8]['header'])
+print(osnma_message)
+
+print_separator()
+print('TESLA Key Verification Test:')
+print()
+print(f'Every key derived correctly? {verifier.test_verify_all()}')
+
+
 print_separator()
 print('MAC Look-up Table Verification:') # TODO
 print_separator()

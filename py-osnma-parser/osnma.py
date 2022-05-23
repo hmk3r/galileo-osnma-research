@@ -15,6 +15,12 @@ class GST:
 
         return GST(new_wn, new_tow)
 
+    def to_seconds(self):
+        return self.wn * GST.SECONDS_IN_WEEK + self.tow
+
+    def to_binstr(self):
+        return f'{self.wn:012b}{self.tow:020b}'
+
     def __repr__(self) -> str:
         return f'WN: {self.wn}, TOW: {self.tow}'
 
@@ -104,7 +110,7 @@ class OSNMA:
             self.WNK = int(hk_root_str[52:64], 2)
             self.TOWHK = int(hk_root_str[64:72], 2)
             self.TOWK = self.TOWHK * GST.SECONDS_IN_HOUR
-            self.alpha = hex(int(hk_root_str[72:120], 2))
+            self.alpha = hk_root_str[72:120]
             self.GST_0 = GST(self.WNK, self.TOWK)
             self.GST_SF_K = self.GST_0.add_time(OSNMA.KROOT_GST_TIME_DELTA)
             self.KS_Real = self.KEY_SIZE_ENUM(self.KS)
@@ -124,6 +130,7 @@ class OSNMA:
             OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['Key_Start'] = self.number_of_tags * total_tag_size
             OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_0'] = self.GST_0
             OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_SF_K'] = self.GST_SF_K
+            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['alpha'] = self.alpha
         else:
             self.NB = None
             self.PKID = None
@@ -148,7 +155,8 @@ class OSNMA:
         if self.DSM_ID in OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM:
             l_t = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TS_Real']
             l_k = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['KS_Real']
-            
+            self.alpha = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['alpha']
+
             self.number_of_tags = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['N_t']
             total_tag_size = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TTS']
             ti_start = total_tag_size
@@ -175,7 +183,8 @@ class OSNMA:
             self.TESLA_key = None
             self.MACKs_padding = None
 
-    
+        self.TESLA_key_verified = False
+
     def copy(self):
         return OSNMA(self.prn, self._hk_root_str, self._mack_str, self._gst_sf_str)
 
@@ -220,6 +229,6 @@ class OSNMA:
             s += f'    -> Tag&Info\n'
             for tag, info in self.tags_and_info:
                 s += f'      -> Tag: {hex(int(tag, 2))}; Info: {info}\n'
-            s += f'    -> TESLA Key: {hex(int(self.TESLA_key, 2))}\n'
+            s += f'    -> TESLA Key: {hex(int(self.TESLA_key, 2))}, {"" if self.TESLA_key_verified else "NOT"} verified\n'
 
         return s
