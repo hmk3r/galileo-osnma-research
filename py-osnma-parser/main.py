@@ -98,7 +98,7 @@ print_separator()
 print('TESLA Key Verification:') # TODO
 osnma_message = storage.osnma_messages[8][-25]
 print(osnma_message.CID)
-verifier.verify_TESLA_key(osnma_message, storage.DSMs[8]['header'])
+verifier.verify_TESLA_key(osnma_message)
 print(osnma_message)
 
 print_separator()
