@@ -1,12 +1,13 @@
 class GST:
     SECONDS_IN_HOUR = 3600
     SECONDS_IN_WEEK = 7 * 24 * SECONDS_IN_HOUR
+    SF_FREQUENCY_SECONDS = 30
 
-    def __init__(self, wn, tow) -> None:
+    def __init__(self, wn, tow) -> 'GST':
         self.wn = wn
         self.tow = tow
 
-    def add_time(self, seconds):
+    def add_time(self, seconds) -> 'GST':
         new_tow = self.tow + seconds
         wn_adj = new_tow // GST.SECONDS_IN_WEEK
 
@@ -15,7 +16,10 @@ class GST:
 
         return GST(new_wn, new_tow)
 
-    def to_seconds(self):
+    def normalise_to_SF_multiple(self) -> 'GST':
+        return GST(self.wn, (self.tow // GST.SF_FREQUENCY_SECONDS) * GST.SF_FREQUENCY_SECONDS)
+
+    def to_seconds(self) -> int:
         return self.wn * GST.SECONDS_IN_WEEK + self.tow
 
     def to_binstr(self):

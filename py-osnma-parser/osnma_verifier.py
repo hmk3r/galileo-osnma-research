@@ -12,6 +12,8 @@ from Crypto.Hash import SHA256, SHA3_256, SHA512
 from osnma import OSNMA, GST
 
 from utils import binstr_to_bytes, get_hash_function_for_ECDSA
+from progress.bar import IncrementalBar
+
 
 class Chain:
     def __init__(self) -> None:
@@ -94,7 +96,7 @@ class OSNMA_Verifier:
 
         m_bytes = binstr_to_bytes(m)
         h = SHA256
-        if L_ds == 512:
+        if public_key.pointQ.size_in_bits() == 512:
             h = SHA512
 
         t = h.new(binstr_to_bytes(m + sig)).digest()
@@ -154,7 +156,7 @@ class OSNMA_Verifier:
 
             prev_key = h[:len(root_key_bytes)]
             if self.DEBUG:
-                print(f'KEY {str(i - 1).zfill(3)}: {m.hex()}, {prev_key.hex()} =? {root_key_bytes.hex()}')
+                print(f'KEY {str(i - 1).zfill(3)}: {m.hex()}, {prev_key.hex()} =? {root_key_bytes.hex()}, {str(GST_SF_i)}')
             
             i -= 1
 
@@ -177,6 +179,37 @@ class OSNMA_Verifier:
             self.chains[msg.CID].keys[key_index] = current_key
         
         return msg.TESLA_key_verified
+
+    def brute_GST(self, msg: OSNMA):
+        old_flag = self.DEBUG
+        self.DEBUG = False
+
+        old_gst_sf_k = self.chains[msg.CID].GST_SF_K
+
+        victim = msg.copy()
+        victim.GST_SF = self.chains[victim.CID].GST_SF_K.add_time(30)
+        secs = pow(2, 20)
+        sf_k_delta = 10
+        self.chains[msg.CID].GST_SF_K = old_gst_sf_k.add_time((-sf_k_delta // 2) * 30)
+
+        bar = IncrementalBar('BF Progress', suffix = '%(percent)d%% %(index)d/%(max)d [%(elapsed_td)s / %(eta_td)s]')
+        for i in bar.iter(range(1, secs * 10 + 1)):
+            if i % secs == 0:
+                self.chains[msg.CID].GST_SF_K = self.chains[msg.CID].GST_SF_K.add_time(30)
+                victim.GST_SF_K = self.chains[msg.CID].GST_SF_K.add_time(30)
+
+            victim.GST_SF_K = victim.GST_SF_K.add_time(1)
+            success = self.verify_TESLA_key(victim)
+            if success:
+                bar.finish()
+                print(f'Correct Time Found!: ')
+                print(f'SF_K: {str(self.chains[msg.CID].GST_SF_K)}')
+                print(f'SF_msg: {str(victim.GST_SF_K)}')
+                break
+        
+        self.chains[msg.CID].GST_SF_K = old_gst_sf_k
+        self.DEBUG = old_flag
+
 
     def test_verify(self, test_vector=None):
         MOCK_CID = 523
