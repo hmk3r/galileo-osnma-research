@@ -44,6 +44,8 @@ class Chain:
 
 class OSNMA_Verifier:
     DEBUG = True
+    TAKE_SHORTCUTS = True
+
     def __init__(self, public_keys_dir) -> None:
         self.public_keys: dict[int, ECC.EccKey] = dict()
         self.__load_keys_from_directory(public_keys_dir)
@@ -95,11 +97,8 @@ class OSNMA_Verifier:
         m += root_key
 
         m_bytes = binstr_to_bytes(m)
-        h = SHA256
-        if public_key.pointQ.size_in_bits() == 512:
-            h = SHA512
 
-        t = h.new(binstr_to_bytes(m + sig)).digest()
+        t = SHA256.new(binstr_to_bytes(m + sig)).digest()
 
 
         is_valid_sig = self._verify_sig(m_bytes, sig_bytes, public_key)
@@ -135,7 +134,8 @@ class OSNMA_Verifier:
 
         alpha_bytes = self.chains[msg.CID].alpha
 
-        GST_SF_i = msg.GST_SF.add_time(-1)
+        # The time between the messages has to be a 0 mod 30, which the documentation does not explicitly say
+        GST_SF_i = msg.GST_SF.add_time(-1).normalise_to_SF_multiple()
         key_index = (GST_SF_i.to_seconds() - GST_0.to_seconds()) // 30 + 1
         if self.DEBUG:
             print(f'Key index: {key_index}')
@@ -167,7 +167,7 @@ class OSNMA_Verifier:
             
             GST_SF_i_bytes = binstr_to_bytes(GST_SF_i.to_binstr())
             
-            if i in self.chains[msg.CID].keys and self.chains[msg.CID].keys[i] == prev_key:
+            if i in self.chains[msg.CID].keys and self.chains[msg.CID].keys[i] == prev_key and self.TAKE_SHORTCUTS:
                 prev_key = root_key_bytes
                 if self.DEBUG:
                     print('Chained reached a key that was verified; short-cutting')

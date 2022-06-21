@@ -76,10 +76,8 @@ for prn, messages in prn_messages.items():
 
 storage = OSNMA_Storage()
 for prn, subframes in prn_messages_complete.items():
-    print_separator()
     for subframe in subframes:
         osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'], subframe['GST_SF'])
-        # print(osnma)
         if osnma.NMAS == 0:
             continue
         storage.add(osnma)
@@ -95,13 +93,24 @@ for DSM_id, c in storage.get_all():
     verifier.verify_kroot(c['DSMs'], c['header'])
 
 print_separator()
-print('TESLA Key Verification:') # TODO
-osnma_message = storage.osnma_messages[8][-25]
-print(osnma_message.CID)
-verifier.brute_GST(osnma_message)
-print(osnma_message)
+print('TESLA Key Verification:')
+print()
 
-print_separator()
+verifier.TAKE_SHORTCUTS = True
+verifier.DEBUG = True
+for i in range(len(storage.osnma_messages)):
+    osnma_message = storage.osnma_messages[i]
+    
+    # Maybe received in weird order, try to get the values by re-invoking the constructor 
+    if not osnma_message.TESLA_key:
+        print('Missing TESLA key, attempting to repair')
+        storage.osnma_messages[i] = osnma_message.copy()
+        osnma_message = storage.osnma_messages[i]
+
+    verifier.verify_TESLA_key(osnma_message)
+    print(osnma_message)
+    print_separator()
+
 print('TESLA Key Verification Test:')
 print()
 print(f'Every key derived correctly? {verifier.test_verify_all()}')

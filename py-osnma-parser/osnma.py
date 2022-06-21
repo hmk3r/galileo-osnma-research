@@ -80,7 +80,7 @@ class OSNMA:
         else:
             return (value - 5) * 4 + 20
 
-    LAST_KNOWN_FIELD_VALUES_PER_DSM = dict()
+    LATEST_VALUES_PER_CHAIN = dict()
 
     def __init__(self, prn, hk_root_str, mack_str, gst_sf_str) -> None:
         self._hk_root_str = hk_root_str
@@ -121,20 +121,20 @@ class OSNMA:
             self.TS_Real = self.TS_ENUM(self.TS)
             self.number_of_tags = (480 - self.KS_Real) // (self.TS_Real + 16)
 
-            if self.DSM_ID not in OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM:
-                OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID] = dict()
+            if self.CIDKR not in OSNMA.LATEST_VALUES_PER_CHAIN:
+                OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR] = dict()
             
-            total_tag_size = self.TS + OSNMA.TAG_INFO_SIZE
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TS'] = self.TS
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TS_Real'] = self.TS_Real
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['KS'] = self.KS
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['KS_Real'] = self.KS_Real
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['N_t'] = self.number_of_tags
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TTS'] = total_tag_size
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['Key_Start'] = self.number_of_tags * total_tag_size
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_0'] = self.GST_0
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_SF_K'] = self.GST_SF_K
-            OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['alpha'] = self.alpha
+            total_tag_size = self.TS_Real + OSNMA.TAG_INFO_SIZE
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['TS'] = self.TS
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['TS_Real'] = self.TS_Real
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['KS'] = self.KS
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['KS_Real'] = self.KS_Real
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['N_t'] = self.number_of_tags
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['TTS'] = total_tag_size
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['Key_Start'] = self.number_of_tags * total_tag_size
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['GST_0'] = self.GST_0
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['GST_SF_K'] = self.GST_SF_K
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['alpha'] = self.alpha
         else:
             self.NB = None
             self.PKID = None
@@ -156,18 +156,18 @@ class OSNMA:
             self.TS_Real = None
             self.number_of_tags = None
         
-        if self.DSM_ID in OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM:
-            l_t = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TS_Real']
-            l_k = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['KS_Real']
-            self.alpha = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['alpha']
+        if self.CID in OSNMA.LATEST_VALUES_PER_CHAIN:
+            l_t = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['TS_Real']
+            l_k = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['KS_Real']
+            self.alpha = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['alpha']
 
-            self.number_of_tags = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['N_t']
-            total_tag_size = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['TTS']
+            self.number_of_tags = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['N_t']
+            total_tag_size = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['TTS']
             ti_start = total_tag_size
-            key_start = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['Key_Start']
+            key_start = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['Key_Start']
 
-            self.GST_0 = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_0']
-            self.GST_SF_K = OSNMA.LAST_KNOWN_FIELD_VALUES_PER_DSM[self.DSM_ID]['GST_SF_K']
+            self.GST_0 = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['GST_0']
+            self.GST_SF_K = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['GST_SF_K']
             self.TAG_0 = mack_str[:l_t]
             self.MACSEQ = mack_str[l_t:l_t + 12]
             self.reserved_mack_2 = mack_str[l_t + 12:ti_start]
@@ -177,7 +177,7 @@ class OSNMA:
             ) for i in range(self.number_of_tags - 1)])
 
             self.TESLA_key = mack_str[key_start:key_start + l_k]
-            self.MACKs_padding = mack_str[key_start + l_k:480]
+            self.MACKs_padding = mack_str[key_start + l_k:]
         else:
             self.number_of_tags = None
             self.TAG_0 = None
@@ -195,7 +195,7 @@ class OSNMA:
     def __repr__(self) -> str:
         s = f'-> PRN: {self.prn}\n'
         if self.NMAS == 0:
-            return s + "  -> OSNMA Disabled for this satelite"
+            return s + "  -> OSNMA Disabled for this satellite"
         s += f'  -> WN: {self.WN}\n'
         s += f'  -> TOW: {self.TOW}\n'
         s += f'  -> TOW: {self.GST_SF}\n'
@@ -234,5 +234,5 @@ class OSNMA:
             for tag, info in self.tags_and_info:
                 s += f'      -> Tag: {hex(int(tag, 2))}; Info: {info}\n'
             s += f'    -> TESLA Key: {hex(int(self.TESLA_key, 2))}, {"" if self.TESLA_key_verified else "NOT"} verified\n'
-
+            s += f'    -> Padding: {self.MACKs_padding}'
         return s
