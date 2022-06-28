@@ -92,24 +92,23 @@ print_separator()
 for DSM_id, c in storage.get_all():
     verifier.verify_kroot(c['DSMs'], c['header'])
 
+# Maybe received in weird order, try to get the values by re-invoking the constructor 
+for i in range(len(storage.osnma_messages)):
+    osnma_message = storage.osnma_messages[i]
+    
+    if not osnma_message.TESLA_key or not osnma_message.tags_and_info:
+        print('Missing TESLA key, attempting to repair')
+        storage.osnma_messages[i] = osnma_message.copy()
+        osnma_message = storage.osnma_messages[i]
+
 print_separator()
 print('TESLA Key Verification:')
 print()
 
 verifier.TAKE_SHORTCUTS = True
 verifier.DEBUG = True
-for i in range(len(storage.osnma_messages)):
-    osnma_message = storage.osnma_messages[i]
-    
-    # Maybe received in weird order, try to get the values by re-invoking the constructor 
-    if not osnma_message.TESLA_key:
-        print('Missing TESLA key, attempting to repair')
-        storage.osnma_messages[i] = osnma_message.copy()
-        osnma_message = storage.osnma_messages[i]
-
-    verifier.verify_TESLA_key(osnma_message)
-    print(osnma_message)
-    print_separator()
+for msg in storage.osnma_messages:
+    verifier.verify_TESLA_key(msg)
 
 print('TESLA Key Verification Test:')
 print()
@@ -117,8 +116,14 @@ print(f'Every key derived correctly? {verifier.test_verify_all()}')
 
 
 print_separator()
-print('MAC Look-up Table Verification:') # TODO
+print('MAC Look-up Table Verification:')
+for msg in storage.osnma_messages:
+    verifier.verify_MACKLT(msg)
+
 print_separator()
 print('MACSEQ Verification:') # TODO
 print_separator()
 print('Tag Verification:') # TODO
+
+for msg in storage.osnma_messages:
+    print(msg)

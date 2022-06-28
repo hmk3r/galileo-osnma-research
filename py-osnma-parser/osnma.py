@@ -59,6 +59,25 @@ class OSNMA:
         2: "Reserved",
         3: "Reserved"
     }
+
+    MACKLT_ENUM = {
+        27: (
+            ("00S", "00E", "00E", "00E", "12S", "00E"),
+            ("00S", "00E", "00E", "04S", "12S", "00E")
+        ),
+        26: (
+            ("00S", "00E", "00E", "00E", "00S", "00E", "00E", "12S", "00E", "00E"), 
+            ("00S", "00E", "00E", "00S", "00E", "00E", "04S", "12S", "00E", "00E")
+        ),
+        31: (
+            ("00S", "00E", "00E", "12S", "00E"),
+            ("00S", "00E", "00E", "12S", "04S")
+        ),
+        33: (
+            ("00S", "00E", "04S", "00E", "12S", "00E"),
+            ("00S", "00E", "00E", "12S", "00E", "12E")
+        )
+    }
     TAG_INFO_SIZE = 16
     NB_OFFSET = 6
 
@@ -86,7 +105,7 @@ class OSNMA:
         self._hk_root_str = hk_root_str
         self._mack_str = mack_str
         self._gst_sf_str = gst_sf_str
-        self.prn = prn
+        self.prn = int(prn)
         self.NMAS = int(hk_root_str[:2], 2)
         if self.NMAS == 0:         
             return
@@ -95,9 +114,11 @@ class OSNMA:
         self.NMA_header_reserved = int(hk_root_str[7:8], 2)
         self.DSM_ID = int(hk_root_str[8:12], 2)
         self.DSM_block_ID = int(hk_root_str[12:16], 2)
-        self.WN = int(gst_sf_str[:12], 2)
-        self.TOW = int(gst_sf_str[12:], 2)
-        self.GST_SF = GST(self.WN, self.TOW)
+        WN = int(gst_sf_str[:12], 2)
+        TOW = int(gst_sf_str[12:], 2)
+        self.GST_SF = GST(WN, TOW).add_time(-1).normalise_to_SF_multiple()
+        self.WN = self.GST_SF.wn
+        self.TOW = self.GST_SF.tow
         if self.DSM_ID > 11:
             raise NotImplementedError('DSK-PKR not implemented')
         if self.DSM_block_ID == 0:
@@ -110,6 +131,7 @@ class OSNMA:
             self.KS = int(hk_root_str[32:36], 2)
             self.TS = int(hk_root_str[36:40], 2)
             self.MACKLT = int(hk_root_str[40:48], 2)
+            self.CHAIN_MACKLT_SEQ = OSNMA.MACKLT_ENUM.get(self.MACKLT, None)
             self.reserved_dsm_kroot_2 = int(hk_root_str[48:52], 2)
             self.WNK = int(hk_root_str[52:64], 2)
             self.TOWHK = int(hk_root_str[64:72], 2)
@@ -131,6 +153,7 @@ class OSNMA:
             OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['KS_Real'] = self.KS_Real
             OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['N_t'] = self.number_of_tags
             OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['TTS'] = total_tag_size
+            OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['CHAIN_MACKLT_SEQ'] = self.CHAIN_MACKLT_SEQ
             OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['Key_Start'] = self.number_of_tags * total_tag_size
             OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['GST_0'] = self.GST_0
             OSNMA.LATEST_VALUES_PER_CHAIN[self.CIDKR]['GST_SF_K'] = self.GST_SF_K
@@ -145,6 +168,7 @@ class OSNMA:
             self.KS = None
             self.TS = None
             self.MACKLT = None
+            self.CHAIN_MACKLT_SEQ = None
             self.reserved_dsm_kroot_2 = None
             self.WNK = None
             self.TOWHK = None
@@ -171,10 +195,19 @@ class OSNMA:
             self.TAG_0 = mack_str[:l_t]
             self.MACSEQ = mack_str[l_t:l_t + 12]
             self.reserved_mack_2 = mack_str[l_t + 12:ti_start]
-            self.tags_and_info = tuple([(
-                mack_str[ti_start + i * total_tag_size:ti_start + i * total_tag_size + l_t],
-                mack_str[ti_start + i * total_tag_size + l_t:ti_start + i * total_tag_size + l_t + OSNMA.TAG_INFO_SIZE]
-            ) for i in range(self.number_of_tags - 1)])
+
+            self.CHAIN_MACKLT_SEQ = OSNMA.LATEST_VALUES_PER_CHAIN[self.CID]['CHAIN_MACKLT_SEQ']
+            _tags_and_info = list() 
+            for i in range(self.number_of_tags - 1):
+                tag = mack_str[ti_start + i * total_tag_size:ti_start + i * total_tag_size + l_t]
+                info_str = mack_str[ti_start + i * total_tag_size + l_t:ti_start + i * total_tag_size + l_t + OSNMA.TAG_INFO_SIZE]
+
+                PRN_D = int(info_str[:8], 2)
+                ADKD = int(info_str[8:12], 2)
+                reserved_2 = info_str[12:16]
+                _tags_and_info.append((tag, (PRN_D, ADKD, reserved_2)))
+
+            self.tags_and_info = tuple(_tags_and_info)
 
             self.TESLA_key = mack_str[key_start:key_start + l_k]
             self.MACKs_padding = mack_str[key_start + l_k:]
@@ -188,6 +221,7 @@ class OSNMA:
             self.MACKs_padding = None
 
         self.TESLA_key_verified = False
+        self.SF_MACKLT_SEQ_VERIFIED = False
 
     def copy(self):
         return OSNMA(self.prn, self._hk_root_str, self._mack_str, self._gst_sf_str)
@@ -232,7 +266,8 @@ class OSNMA:
             s += f'    -> Reserved: {self.reserved_mack_2}\n'
             s += f'    -> Tag&Info\n'
             for tag, info in self.tags_and_info:
-                s += f'      -> Tag: {hex(int(tag, 2))}; Info: {info}\n'
-            s += f'    -> TESLA Key: {hex(int(self.TESLA_key, 2))}, {"" if self.TESLA_key_verified else "NOT"} verified\n'
-            s += f'    -> Padding: {self.MACKs_padding}'
+                s += f'      -> Tag: {hex(int(tag, 2))}; Info - PRN_D: {info[0]}, ADKD: {info[1]}, Reserved: {info[2]}\n'
+            s += f'    -> TESLA Key: {hex(int(self.TESLA_key, 2))}, {"" if self.TESLA_key_verified else "NOT "}verified\n'
+            s += f'    -> Padding: {self.MACKs_padding}\n'
+            s += f'    -> Subframe MACK Sequence {"NOT " if not self.SF_MACKLT_SEQ_VERIFIED else ""}Verified'
         return s

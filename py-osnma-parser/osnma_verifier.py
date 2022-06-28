@@ -21,6 +21,7 @@ class Chain:
         self._HF: Any = None
         self.alpha: bytes = None
         self.keys: dict[int, bytes] = dict()
+        self.MACKLT_SEQ = None
 
     @property
     def hash_func(self) -> Union[SHA256.SHA256Hash, SHA3_256.SHA3_256_Hash]:
@@ -35,12 +36,13 @@ class Chain:
         else:
             raise ValueError(f'Invalid value for hash function: {hf_id}')
 
-    def new_kroot(self, key: bytes, GST_SF_K: GST, hf_id: int, alpha: bytes):
+    def new_kroot(self, key: bytes, GST_SF_K: GST, hf_id: int, alpha: bytes, maclt_seq: tuple):
         self.keys.clear()
         self.keys[0] = key
         self.hash_func = hf_id
         self.alpha = alpha
         self.GST_SF_K = GST_SF_K
+        self.MACKLT_SEQ = maclt_seq
 
 class OSNMA_Verifier:
     DEBUG = True
@@ -106,7 +108,7 @@ class OSNMA_Verifier:
         if header.CIDKR not in self.chains:
             self.chains[header.CIDKR] = Chain()
 
-        self.chains[header.CIDKR].new_kroot(root_key_bytes, header.GST_SF_K, header.HF, alpha_bytes)
+        self.chains[header.CIDKR].new_kroot(root_key_bytes, header.GST_SF_K, header.HF, alpha_bytes, header.CHAIN_MACKLT_SEQ)
 
         print('DSM-KROOT Verification:')
         print()
@@ -135,7 +137,7 @@ class OSNMA_Verifier:
         alpha_bytes = self.chains[msg.CID].alpha
 
         # The time between the messages has to be a 0 mod 30, which the documentation does not explicitly say
-        GST_SF_i = msg.GST_SF.add_time(-1).normalise_to_SF_multiple()
+        GST_SF_i = msg.GST_SF
         key_index = (GST_SF_i.to_seconds() - GST_0.to_seconds()) // 30 + 1
         if self.DEBUG:
             print(f'Key index: {key_index}')
@@ -179,6 +181,25 @@ class OSNMA_Verifier:
             self.chains[msg.CID].keys[key_index] = current_key
         
         return msg.TESLA_key_verified
+    
+    def verify_MACKLT(self, msg: OSNMA):
+        if not msg.tags_and_info or msg.CID not in self.chains:
+            if self.DEBUG:
+                print('Tags and info not available in this subframe')
+            return False
+    
+        sf_macklt_seq = ["00S"]
+        for tag, (prn_d, adkd, reserved) in msg.tags_and_info:
+            auth_type = "S" if prn_d == msg.prn or prn_d == 255 else "E"
+            sf_macklt_seq.append(f'{adkd:02d}{auth_type}')
+
+        chain_macklt_seqs = self.chains[msg.CID].MACKLT_SEQ
+        chain_macklt_seq = chain_macklt_seqs[0] if msg.TOW % 60 == 0 else chain_macklt_seqs[1]
+        sf_macklt_seq = tuple(sf_macklt_seq)
+
+        msg.SF_MACKLT_SEQ_VERIFIED = chain_macklt_seq == sf_macklt_seq
+
+        return msg.SF_MACKLT_SEQ_VERIFIED
 
     def brute_GST(self, msg: OSNMA):
         old_flag = self.DEBUG
@@ -229,14 +250,15 @@ class OSNMA_Verifier:
             bytes.fromhex(kroot_hex),
             GST(kroot_WN_SF, kroot_TOW_SF),
             HF,
-            bytes.fromhex(kroot_alpha_hex)
+            bytes.fromhex(kroot_alpha_hex),
+            OSNMA.MACKLT_ENUM.get(33, tuple())
         )
         
         tesla_osnma_mock = OSNMA(123, '0' * 120, '0' * 480, '0' * 360)
 
 
         tesla_osnma_mock.CID = MOCK_CID
-        tesla_osnma_mock.GST_SF = GST(key_WN_SF, key_TOW_SF).add_time(1)
+        tesla_osnma_mock.GST_SF = GST(key_WN_SF, key_TOW_SF)
         tesla_osnma_mock.TESLA_key = bin(int(key_hex, 16)).lstrip('0b').zfill(KS)
 
         return self.verify_TESLA_key(tesla_osnma_mock)
