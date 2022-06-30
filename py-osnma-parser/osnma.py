@@ -1,3 +1,6 @@
+from utils import binstr_to_bytes
+
+
 class GST:
     SECONDS_IN_HOUR = 3600
     SECONDS_IN_WEEK = 7 * 24 * SECONDS_IN_HOUR
@@ -205,7 +208,7 @@ class OSNMA:
                 PRN_D = int(info_str[:8], 2)
                 ADKD = int(info_str[8:12], 2)
                 reserved_2 = info_str[12:16]
-                _tags_and_info.append((tag, (PRN_D, ADKD, reserved_2)))
+                _tags_and_info.append((tag, (PRN_D, ADKD, reserved_2, binstr_to_bytes(info_str))))
 
             self.tags_and_info = tuple(_tags_and_info)
 
@@ -222,6 +225,7 @@ class OSNMA:
 
         self.TESLA_key_verified = False
         self.SF_MACKLT_SEQ_VERIFIED = False
+        self.MACSEQ_verified = (False, False)
 
     def copy(self):
         return OSNMA(self.prn, self._hk_root_str, self._mack_str, self._gst_sf_str)
@@ -262,7 +266,7 @@ class OSNMA:
         else:
             s += '\n'
             s += f'    -> Tag_0: {hex(int(self.TAG_0, 2))}\n'
-            s += f'    -> MACSEQ: {self.MACSEQ}\n'
+            s += f'    -> MACSEQ: {self.MACSEQ}, {"NOT " if  not self.MACSEQ_verified[0] else ""}Verified, with{"OUT" if not self.MACSEQ_verified[1] else ""} verified TESLA Key\n'
             s += f'    -> Reserved: {self.reserved_mack_2}\n'
             s += f'    -> Tag&Info\n'
             for tag, info in self.tags_and_info:

@@ -121,7 +121,11 @@ for msg in storage.osnma_messages:
     verifier.verify_MACKLT(msg)
 
 print_separator()
-print('MACSEQ Verification:') # TODO
+print('MACSEQ Verification:')
+print()
+for msg in storage.osnma_messages:
+    verifier.verify_MACSEQ(msg)
+
 print_separator()
 print('Tag Verification:') # TODO
 

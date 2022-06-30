@@ -1,3 +1,4 @@
+from types import ModuleType
 from typing import Union, Any
 from math import ceil
 from pathlib import Path
@@ -7,21 +8,23 @@ import binascii
 
 from Crypto.PublicKey import ECC
 from Crypto.Signature import DSS
-from Crypto.Hash import SHA256, SHA3_256, SHA512
+from Crypto.Hash import SHA256, SHA3_256, HMAC, CMAC, SHA512
+from Crypto.Cipher import AES
 
 from osnma import OSNMA, GST
 
-from utils import binstr_to_bytes, get_hash_function_for_ECDSA
+from utils import binstr_to_bytes, bytes_to_binstr, get_hash_function_for_ECDSA
 from progress.bar import IncrementalBar
 
 
 class Chain:
     def __init__(self) -> None:
         self.GST_SF_K: GST = None
-        self._HF: Any = None
+        self._HF: ModuleType = None
         self.alpha: bytes = None
         self.keys: dict[int, bytes] = dict()
         self.MACKLT_SEQ = None
+        self._MF_ID: int = None
 
     @property
     def hash_func(self) -> Union[SHA256.SHA256Hash, SHA3_256.SHA3_256_Hash]:
@@ -36,13 +39,22 @@ class Chain:
         else:
             raise ValueError(f'Invalid value for hash function: {hf_id}')
 
-    def new_kroot(self, key: bytes, GST_SF_K: GST, hf_id: int, alpha: bytes, maclt_seq: tuple):
+    def get_mac_func(self, key: bytes) -> Union[HMAC.HMAC, CMAC.CMAC]:
+        if self._MF_ID == 0:
+            return HMAC.new(key, digestmod=SHA256)
+        elif self._MF_ID == 1:
+            return CMAC.new(key, ciphermod=AES)
+        else:
+            raise ValueError(f'Invalid value for mac function: {self._MF_ID}')
+
+    def new_kroot(self, key: bytes, GST_SF_K: GST, hf_id: int, mf_id: int, alpha: bytes, maclt_seq: tuple):
         self.keys.clear()
         self.keys[0] = key
         self.hash_func = hf_id
         self.alpha = alpha
         self.GST_SF_K = GST_SF_K
         self.MACKLT_SEQ = maclt_seq
+        self._MF_ID = mf_id
 
 class OSNMA_Verifier:
     DEBUG = True
@@ -52,6 +64,7 @@ class OSNMA_Verifier:
         self.public_keys: dict[int, ECC.EccKey] = dict()
         self.__load_keys_from_directory(public_keys_dir)
         self.chains: dict[int, Chain] = dict()
+        self.MACSEQ_verification_queue: dict[int, OSNMA] = dict()
 
     def __load_keys_from_directory(self, public_keys_dir):
         for xml_file in Path(public_keys_dir).glob('*.xml'):
@@ -108,7 +121,7 @@ class OSNMA_Verifier:
         if header.CIDKR not in self.chains:
             self.chains[header.CIDKR] = Chain()
 
-        self.chains[header.CIDKR].new_kroot(root_key_bytes, header.GST_SF_K, header.HF, alpha_bytes, header.CHAIN_MACKLT_SEQ)
+        self.chains[header.CIDKR].new_kroot(root_key_bytes, header.GST_SF_K, header.HF, header.MF, alpha_bytes, header.CHAIN_MACKLT_SEQ)
 
         print('DSM-KROOT Verification:')
         print()
@@ -189,7 +202,7 @@ class OSNMA_Verifier:
             return False
     
         sf_macklt_seq = ["00S"]
-        for tag, (prn_d, adkd, reserved) in msg.tags_and_info:
+        for tag, (prn_d, adkd, reserved, _) in msg.tags_and_info:
             auth_type = "S" if prn_d == msg.prn or prn_d == 255 else "E"
             sf_macklt_seq.append(f'{adkd:02d}{auth_type}')
 
@@ -200,6 +213,51 @@ class OSNMA_Verifier:
         msg.SF_MACKLT_SEQ_VERIFIED = chain_macklt_seq == sf_macklt_seq
 
         return msg.SF_MACKLT_SEQ_VERIFIED
+
+    def verify_MACSEQ(self, msg: OSNMA):
+        if msg.CID not in self.chains:
+            msg.MACSEQ_verified = (False, msg.TESLA_key_verified)
+            return False
+        
+        if msg.prn not in self.MACSEQ_verification_queue:
+            self.MACSEQ_verification_queue[msg.prn] = msg
+            msg.MACSEQ_verified = (False, msg.TESLA_key_verified)
+            return False
+        
+        subframe_to_verify = self.MACSEQ_verification_queue[msg.prn]
+
+        chain_macklt_seqs = self.chains[subframe_to_verify.CID].MACKLT_SEQ
+        chain_macklt_seq = chain_macklt_seqs[0] if subframe_to_verify.TOW % 60 == 0 else chain_macklt_seqs[1]
+
+        m = subframe_to_verify.prn.to_bytes(1, 'big')
+        m += binstr_to_bytes(subframe_to_verify.GST_SF.to_binstr())
+
+
+        for i, slot in enumerate(chain_macklt_seq):
+            if slot == 'FLX':
+                m += subframe_to_verify.tags_and_info[i - 1][1][3]
+
+        mac_key = binstr_to_bytes(msg.TESLA_key)
+
+        mac_func = self.chains[msg.CID].get_mac_func(mac_key)
+
+        mac_func.update(m)
+
+        tag = mac_func.digest()
+        trunc_tag = bytes_to_binstr(tag)[:12]
+
+        verified = trunc_tag == subframe_to_verify.MACSEQ
+        if self.DEBUG:
+            print(f'PRN: {subframe_to_verify.prn}, {str(subframe_to_verify.GST_SF)}; {trunc_tag} =? {subframe_to_verify.MACSEQ} - {verified}')
+
+        subframe_to_verify.MACSEQ_verified = (
+            verified,
+            msg.TESLA_key_verified
+        )
+
+        self.MACSEQ_verification_queue[msg.prn] = msg
+
+        return all(subframe_to_verify.MACSEQ_verified)
 
     def brute_GST(self, msg: OSNMA):
         old_flag = self.DEBUG
@@ -244,12 +302,14 @@ class OSNMA_Verifier:
         kroot_TOW_SF = 604770
         KS = 128
         HF = 0
+        MF = 0
 
         self.chains[MOCK_CID] = Chain()
         self.chains[MOCK_CID].new_kroot(
             bytes.fromhex(kroot_hex),
             GST(kroot_WN_SF, kroot_TOW_SF),
             HF,
+            MF,
             bytes.fromhex(kroot_alpha_hex),
             OSNMA.MACKLT_ENUM.get(33, tuple())
         )
