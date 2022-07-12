@@ -15,6 +15,10 @@ def bytes_to_binstr(b: bytes):
     lst = [bin(byte)[2:].zfill(8) for byte in b]
     return ''.join(lst)
 
+def pad_binstr_to_byte_length(binstr: str):
+    zeros = 8 - len(binstr) % 8
+    return binstr + zeros * '0'
+
 def print_separator():
     print()
     print('-' * 20)

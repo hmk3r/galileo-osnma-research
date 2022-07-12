@@ -3,7 +3,7 @@ from osnma import OSNMA
 class OSNMA_Storage:
     def __init__(self) -> None:
         self.DSMs = dict()
-        self.osnma_messages = list()
+        self.osnma_messages: list[OSNMA] = list()
     
     def add(self, osnma_message: OSNMA) -> None:
         if osnma_message.DSM_ID not in self.DSMs:

@@ -13,7 +13,7 @@ from Crypto.Cipher import AES
 
 from osnma import OSNMA, GST
 
-from utils import binstr_to_bytes, bytes_to_binstr, get_hash_function_for_ECDSA
+from utils import binstr_to_bytes, bytes_to_binstr, get_hash_function_for_ECDSA, pad_binstr_to_byte_length
 from progress.bar import IncrementalBar
 
 
@@ -25,6 +25,7 @@ class Chain:
         self.keys: dict[int, bytes] = dict()
         self.MACKLT_SEQ = None
         self._MF_ID: int = None
+        self.message_with_header = None
 
     @property
     def hash_func(self) -> Union[SHA256.SHA256Hash, SHA3_256.SHA3_256_Hash]:
@@ -47,7 +48,7 @@ class Chain:
         else:
             raise ValueError(f'Invalid value for mac function: {self._MF_ID}')
 
-    def new_kroot(self, key: bytes, GST_SF_K: GST, hf_id: int, mf_id: int, alpha: bytes, maclt_seq: tuple):
+    def new_kroot(self, key: bytes, GST_SF_K: GST, hf_id: int, mf_id: int, alpha: bytes, maclt_seq: tuple, message_with_header: OSNMA):
         self.keys.clear()
         self.keys[0] = key
         self.hash_func = hf_id
@@ -55,16 +56,52 @@ class Chain:
         self.GST_SF_K = GST_SF_K
         self.MACKLT_SEQ = maclt_seq
         self._MF_ID = mf_id
+        self.message_with_header = message_with_header
 
 class OSNMA_Verifier:
+    class _Verification_Data:
+        def __init__(self, tag_type: str, tag: bytes, message: bytes, navdata_osnma_ref: OSNMA) -> None:
+            self.tag_type = tag_type
+            self.tag = tag
+            self.message = message
+            self.navdata_osnma_ref = navdata_osnma_ref
+        
+        def __repr__(self) -> str:
+            return f'Tag type: {self.tag_type}'
+            
+
     DEBUG = True
     TAKE_SHORTCUTS = True
+
+    ADKD_DATA_INDICES = {
+        0: ((10, 6, -2), (0, 6, -2), (11, 6, 128), (1, 6, -2), (12, 6, -55)),
+        4: ((2, 6, -3), (4, -42, 128)),
+        12: ((10, 6, -2), (0, 6, -2), (11, 6, 128), (1, 6, -2), (12, 6, -55)),
+    }
+
+    @staticmethod
+    def get_tag_type(adkd_or_str, prn_a, prn_d=None):
+        if prn_d is None:
+            prn_d = prn_a
+        
+        auth_type = 'Cross'
+        if prn_a == prn_d:
+            auth_type = 'Self'
+        
+        return f'{auth_type}-{str(adkd_or_str)}'
+
 
     def __init__(self, public_keys_dir) -> None:
         self.public_keys: dict[int, ECC.EccKey] = dict()
         self.__load_keys_from_directory(public_keys_dir)
         self.chains: dict[int, Chain] = dict()
         self.MACSEQ_verification_queue: dict[int, OSNMA] = dict()
+        self.current_GST: GST = None
+        # dict[prn, message] 
+        self.prev_subframe_osnma: dict[int, OSNMA] = dict()
+        self.current_subframe_osnma: dict[int, OSNMA] = dict()
+        # dict[GST, dict[prn, (tag, message, osnma)]]
+        self.waiting_for_key_at_GST: dict[GST, dict[int, OSNMA_Verifier._Verification_Data]] = dict()
 
     def __load_keys_from_directory(self, public_keys_dir):
         for xml_file in Path(public_keys_dir).glob('*.xml'):
@@ -121,7 +158,7 @@ class OSNMA_Verifier:
         if header.CIDKR not in self.chains:
             self.chains[header.CIDKR] = Chain()
 
-        self.chains[header.CIDKR].new_kroot(root_key_bytes, header.GST_SF_K, header.HF, header.MF, alpha_bytes, header.CHAIN_MACKLT_SEQ)
+        self.chains[header.CIDKR].new_kroot(root_key_bytes, header.GST_SF_K, header.HF, header.MF, alpha_bytes, header.CHAIN_MACKLT_SEQ, header)
 
         print('DSM-KROOT Verification:')
         print()
@@ -259,6 +296,120 @@ class OSNMA_Verifier:
 
         return all(subframe_to_verify.MACSEQ_verified)
 
+    def verify_tags(self, msg: OSNMA):
+        if self.current_GST is None or msg.GST_SF > self.current_GST:
+            self.current_GST = msg.GST_SF
+            self.prev_subframe_osnma = self.current_subframe_osnma
+            self.current_subframe_osnma = dict()
+        
+        self.current_subframe_osnma[msg.prn] = msg
+        
+        if msg.prn not in self.prev_subframe_osnma:
+            return
+
+        # Message generation
+
+        # - Common parameters
+        GST_SF =  msg.GST_SF.to_binstr()
+        CTR = 1
+        PRN_A = bytes_to_binstr(msg.prn.to_bytes(1, byteorder='big'))
+        NMAS = bytes_to_binstr(msg.NMAS.to_bytes(1, 'big'))[-2:]
+        # - Tag 0 message computation
+
+        tag0_bytes = binstr_to_bytes(msg.TAG_0)
+        tag0_navdata = ''
+        for i, start, end in self.ADKD_DATA_INDICES[0]:
+            tag0_navdata += self.prev_subframe_osnma[msg.prn].navdata[i][start:end]
+
+        # - message
+        tag0_message = PRN_A + GST_SF + bytes_to_binstr(CTR.to_bytes(1, byteorder='big')) + NMAS + tag0_navdata
+        # - message + P
+        tag0_message_bytes = binstr_to_bytes(pad_binstr_to_byte_length(tag0_message))
+
+        key_time = msg.GST_SF.add_time(GST.SF_FREQUENCY_SECONDS)
+        if key_time not in self.waiting_for_key_at_GST:
+            self.waiting_for_key_at_GST[key_time] = dict()
+        
+        if msg.prn not in self.waiting_for_key_at_GST[key_time]:
+            self.waiting_for_key_at_GST[key_time][msg.prn] = list()
+        
+        verification_data = self._Verification_Data(
+            self.get_tag_type('Tag0', msg.prn),
+            tag0_bytes,
+            tag0_message_bytes,
+            self.prev_subframe_osnma[msg.prn]
+        )
+        self.waiting_for_key_at_GST[key_time][msg.prn].append(verification_data)
+
+        for tag, (prn_d, adkd, reserved, _) in msg.tags_and_info:
+            CTR += 1
+            if prn_d == 255:
+                prn_d = msg.prn
+            
+            tag_type = self.get_tag_type(adkd, msg.prn, prn_d)
+            if prn_d not in self.prev_subframe_osnma:
+                if self.DEBUG:
+                    print(f'No subframe from PRN {prn_d} at time {str(msg.GST_SF.add_time(-GST.SF_FREQUENCY_SECONDS))} for {tag_type} authentication')
+                continue
+            
+            navdata_subframe = self.prev_subframe_osnma[prn_d]
+
+            tag_bytes = binstr_to_bytes(tag)
+            tag_navdata = ''
+            for i, start, end in self.ADKD_DATA_INDICES[adkd]:
+                tag_navdata += navdata_subframe.navdata[i][start:end]
+            
+            tag_message = bytes_to_binstr(prn_d.to_bytes(1, byteorder='big')) + \
+                PRN_A + GST_SF + \
+                bytes_to_binstr(CTR.to_bytes(1, byteorder='big')) + NMAS + tag_navdata
+            
+            tag_message_bytes = binstr_to_bytes(pad_binstr_to_byte_length(tag_message))
+            
+            key_time = msg.GST_SF.add_time(GST.SF_FREQUENCY_SECONDS)
+            
+            if adkd == 12:
+                key_time = key_time.add_time(10 * GST.SF_FREQUENCY_SECONDS)
+
+            if key_time not in self.waiting_for_key_at_GST:
+                self.waiting_for_key_at_GST[key_time] = dict()
+        
+            if msg.prn not in self.waiting_for_key_at_GST[key_time]:
+                self.waiting_for_key_at_GST[key_time][msg.prn] = list()
+
+            verification_data = self._Verification_Data(
+                tag_type,
+                tag_bytes,
+                tag_message_bytes,
+                navdata_subframe
+            )
+
+            self.waiting_for_key_at_GST[key_time][msg.prn].append(verification_data)
+            
+        if msg.GST_SF not in self.waiting_for_key_at_GST:
+            return
+        
+        if msg.prn not in self.waiting_for_key_at_GST[msg.GST_SF]:
+            return
+        
+        for verification_data in self.waiting_for_key_at_GST[msg.GST_SF][msg.prn]:
+            verification_data: OSNMA_Verifier._Verification_Data = verification_data
+            mac_key = binstr_to_bytes(msg.TESLA_key)
+
+            mac_func = self.chains[msg.CID].get_mac_func(mac_key)
+
+            mac_func.update(verification_data.message)
+
+            tag = mac_func.digest()
+            tag_trunc = tag[:self.chains[msg.CID].message_with_header.TS_Real // 8]
+            if self.DEBUG:
+                print(f'{str(msg.GST_SF)}, {verification_data.tag_type} - Computed tag: {tag_trunc.hex()}, Reference: {str(verification_data.tag.hex())} Equal? - {verification_data.tag == tag_trunc}')
+
+            verification_data.navdata_osnma_ref.navdata_verifications.append(
+                (verification_data.tag_type, msg.prn, msg.TESLA_key_verified, tag_trunc == verification_data.tag)
+            )
+
+
+
     def brute_GST(self, msg: OSNMA):
         old_flag = self.DEBUG
         self.DEBUG = False
@@ -304,6 +455,8 @@ class OSNMA_Verifier:
         HF = 0
         MF = 0
 
+        tesla_osnma_mock = OSNMA(123, '0' * 120, '0' * 480, '0' * 360, [])
+
         self.chains[MOCK_CID] = Chain()
         self.chains[MOCK_CID].new_kroot(
             bytes.fromhex(kroot_hex),
@@ -311,10 +464,9 @@ class OSNMA_Verifier:
             HF,
             MF,
             bytes.fromhex(kroot_alpha_hex),
-            OSNMA.MACKLT_ENUM.get(33, tuple())
+            OSNMA.MACKLT_ENUM.get(33, tuple()),
+            tesla_osnma_mock
         )
-        
-        tesla_osnma_mock = OSNMA(123, '0' * 120, '0' * 480, '0' * 360)
 
 
         tesla_osnma_mock.CID = MOCK_CID

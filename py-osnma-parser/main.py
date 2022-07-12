@@ -47,7 +47,8 @@ for prn, messages in prn_messages.items():
     default_fields = {
         'hk_root': '',
         'mack': '',
-        'GST_SF': ''
+        'GST_SF': '',
+        'navdata': None
     }
     fields = default_fields.copy()
     expected_message_type_index = 0
@@ -56,6 +57,7 @@ for prn, messages in prn_messages.items():
         if msg_type not in GALILEO_INAV_MESSAGE_SEQUENCE[expected_message_type_index]:
             expected_message_type_index = 0
             fields = default_fields.copy()
+            fields['navdata'] = list()
             continue
         
         if not fields['GST_SF'] and msg_type == 0 and navdata[6:8] == '10':
@@ -65,10 +67,12 @@ for prn, messages in prn_messages.items():
         expected_message_type_index = (expected_message_type_index + 1) % len(GALILEO_INAV_MESSAGE_SEQUENCE) 
         fields['hk_root'] += hk_root
         fields['mack'] += mack
+        fields['navdata'].append(navdata)
 
         if expected_message_type_index == 0 and len(fields['hk_root']) == 120 and len(fields['mack']) == 480:
             subframes.append(fields.copy())
             fields = default_fields.copy()
+            fields['navdata'] = list()
 
         
 
@@ -77,7 +81,7 @@ for prn, messages in prn_messages.items():
 storage = OSNMA_Storage()
 for prn, subframes in prn_messages_complete.items():
     for subframe in subframes:
-        osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'], subframe['GST_SF'])
+        osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'], subframe['GST_SF'], subframe['navdata'])
         if osnma.NMAS == 0:
             continue
         storage.add(osnma)
@@ -127,7 +131,14 @@ for msg in storage.osnma_messages:
     verifier.verify_MACSEQ(msg)
 
 print_separator()
-print('Tag Verification:') # TODO
+print('Tag Verification:')
+storage.osnma_messages.sort(key=lambda msg: msg.GST_SF.to_seconds())
+
+for msg in storage.osnma_messages:
+    verifier.verify_tags(msg)
+print_separator()
+print('Final messages state:')
+print()
 
 for msg in storage.osnma_messages:
     print(msg)

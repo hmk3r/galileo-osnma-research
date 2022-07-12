@@ -1,6 +1,7 @@
+from functools import total_ordering
 from utils import binstr_to_bytes
 
-
+@total_ordering
 class GST:
     SECONDS_IN_HOUR = 3600
     SECONDS_IN_WEEK = 7 * 24 * SECONDS_IN_HOUR
@@ -30,6 +31,15 @@ class GST:
 
     def __repr__(self) -> str:
         return f'WN: {self.wn}, TOW: {self.tow}'
+    
+    def __hash__(self) -> int:
+        return self.to_seconds()
+
+    def __eq__(self, __o: 'GST') -> bool:
+        return self.to_seconds() == __o.to_seconds()
+    
+    def __gt__(self, __o: 'GST') -> bool:
+        return self.to_seconds() > __o.to_seconds()
 
 
 class OSNMA:
@@ -104,10 +114,11 @@ class OSNMA:
 
     LATEST_VALUES_PER_CHAIN = dict()
 
-    def __init__(self, prn, hk_root_str, mack_str, gst_sf_str) -> None:
+    def __init__(self, prn, hk_root_str, mack_str, gst_sf_str, navdata_str_list) -> None:
         self._hk_root_str = hk_root_str
         self._mack_str = mack_str
         self._gst_sf_str = gst_sf_str
+        self.navdata = tuple(navdata_str_list)
         self.prn = int(prn)
         self.NMAS = int(hk_root_str[:2], 2)
         if self.NMAS == 0:         
@@ -226,9 +237,10 @@ class OSNMA:
         self.TESLA_key_verified = False
         self.SF_MACKLT_SEQ_VERIFIED = False
         self.MACSEQ_verified = (False, False)
+        self.navdata_verifications = list()
 
     def copy(self):
-        return OSNMA(self.prn, self._hk_root_str, self._mack_str, self._gst_sf_str)
+        return OSNMA(self.prn, self._hk_root_str, self._mack_str, self._gst_sf_str, self.navdata)
 
     def __repr__(self) -> str:
         s = f'-> PRN: {self.prn}\n'
@@ -236,7 +248,7 @@ class OSNMA:
             return s + "  -> OSNMA Disabled for this satellite"
         s += f'  -> WN: {self.WN}\n'
         s += f'  -> TOW: {self.TOW}\n'
-        s += f'  -> TOW: {self.GST_SF}\n'
+        s += f'  -> GST_SF: {self.GST_SF}\n'
         s += f'  -> HKROOT:\n'
         s += f'    -> NMA Status: {self.NMA_STATUS_ENUM.get(self.NMAS, None)}\n'
         s += f'    -> Chain Status: {self.CHAIN_STATUS_ENUM.get(self.CPKS, None)}\n'
@@ -273,5 +285,9 @@ class OSNMA:
                 s += f'      -> Tag: {hex(int(tag, 2))}; Info - PRN_D: {info[0]}, ADKD: {info[1]}, Reserved: {info[2]}\n'
             s += f'    -> TESLA Key: {hex(int(self.TESLA_key, 2))}, {"" if self.TESLA_key_verified else "NOT "}verified\n'
             s += f'    -> Padding: {self.MACKs_padding}\n'
-            s += f'    -> Subframe MACK Sequence {"NOT " if not self.SF_MACKLT_SEQ_VERIFIED else ""}Verified'
+            s += f'    -> Subframe MACK Sequence {"NOT " if not self.SF_MACKLT_SEQ_VERIFIED else ""}Verified\n'
+        
+        s += f'  -> Navdata Authentic: {not not self.navdata_verifications and all([x[-1] for x in self.navdata_verifications])}\n'
+        for tag_type, verifier, tesla_key_verified, tag_verified in self.navdata_verifications:
+            s += f'    -> Tag Type: {tag_type}, {"NOT " if not tag_verified else ""}Verified by PRN {str(verifier)}, with{"OUT" if not tesla_key_verified else ""} verified TESLA Key\n'
         return s
