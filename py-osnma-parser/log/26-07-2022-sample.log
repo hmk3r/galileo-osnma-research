@@ -1,0 +1,1367 @@
+Public key directory not provided, using default ./osnma-keys
+Loaded Public Key - ID: 2, Size: 256 bits, Curve NIST P-256
+
+--------------------
+
+{5: {'header': None,
+     'DSMs': [None,
+              '10111011100000110010100111000110011101010010000011001110000111010111011101010010001010101001101011011011',
+              '11010110111111101000110111101010100111111100100001111101100011110110101111101101111000000101001101111010',
+              '10101001111001111001101110001001011101100010111110101111110010100110111000010010111000100110111101100100',
+              '01010111110000011100100100000100000101111001100011100000100100010010000110110101011000011100100010100100',
+              '11000110110001011000101101101101000111110000100100100110100100111111111101010111001101101110110100110111',
+              '01100100011100100100111001101001101110001011100100101100011001010100100001101000111000101011111011000010',
+              None,
+              None,
+              None,
+              None,
+              None,
+              None,
+              None,
+              None,
+              None,
+              None,
+              None,
+              None,
+              None,
+              None],
+     'complete': False},
+ 6: {'header': -> PRN: 7
+  -> WN: 1196
+  -> TOW: 223560
+  -> GST_SF: WN: 1196, TOW: 223560
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1196
+    -> TOWHK: 62
+    -> TOWK: 223200
+    -> GST_0: WN: 1196, TOW: 223200
+    -> GST_SF_K: WN: 1196, TOW: 223170
+    -> Alpha(random): 001000101001011001111010001110000101100000001000
+  -> MACK messages: 
+    -> Tag_0: 0x50d74357fb
+    -> MACSEQ: 100011000100, NOT Verified, withOUT verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x7679bafb53; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0x32c353793c; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0xc8d9ae7934; Info - PRN_D: 5, ADKD: 0, Reserved: 0011
+      -> Tag: 0x16c43706bf; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x48de960314; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+    -> TESLA Key: 0xeb96f225cdf20185a7f92f0b1b717031, NOT verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence NOT Verified
+  -> Navdata Authentic: False
+,
+     'DSMs': ['00100010010100000100100100100001000001001010110000111110001000101001011001111010001110000101100000001000',
+              '01100001011111011100100111111001000101001111001011111100011101101000111011101010010110110010111000101010',
+              '00000111111110000010101001101001011111110111000111111110011000100010000000110011001011101000011010101011',
+              '00100111100100100011101001110010100011011011010011001000101110011000011110100010000010001000110101001010',
+              '10000000000100110001011001001111011000110100110111011001111010111001000110010000111001000110110000111011',
+              '11010001110101101100001000010111101110110100110110111111010010101000100010111000111100111110110010111010',
+              '10100101111110010011111010000101111010000111011100001001001011010001100111110100100011001111110011011010',
+              '10111011011010011001010000001110110011110101001001100101001101000001101101110100000011011101000101001101'],
+     'complete': True}}
+
+--------------------
+
+DSM-PKR Verification:
+
+--------------------
+
+DSM-KROOT Verification:
+
+M(232 bits): 0x5250492104ac3e22967a385808617dc9f914f2fc768eea5b2e2a07f82a
+Sig(512 bits): 0x697f71fe6220332e86ab27923a728db4c8b987a2088d4a8013164f634dd9eb9190e46c3bd1d6c217bb4dbf4a88b8f3ecbaa5f93e85e877092d19f48cfcdabb69
+Root key(128 bits): 0x617dc9f914f2fc768eea5b2e2a07f82a
+Pad(88 bits): 0x940ecf5265341b740dd14d
+T(88 bits): 0x940ecf5265341b740dd14d
+Pad == T? True
+Signature Correct? True
+Missing TESLA key, attempting to repair
+Missing TESLA key, attempting to repair
+Missing TESLA key, attempting to repair
+Missing TESLA key, attempting to repair
+Missing TESLA key, attempting to repair
+Missing TESLA key, attempting to repair
+Missing TESLA key, attempting to repair
+
+--------------------
+
+TESLA Key Verification:
+
+Key index: 6
+CID: 1
+KEY 005: 3bedbe07f42ee852fcd4fc979587765c4ac3685822967a385808, f0fc3006a9a81c42a00cc10c7c935be6 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223320
+KEY 004: f0fc3006a9a81c42a00cc10c7c935be64ac3683a22967a385808, 67a58550d7bd705a1dbd60bd87e29df8 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223290
+KEY 003: 67a58550d7bd705a1dbd60bd87e29df84ac3681c22967a385808, bb462891fd0931792425fd03b1d2c415 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223260
+KEY 002: bb462891fd0931792425fd03b1d2c4154ac367fe22967a385808, d8582f5f98630f8adc7c1af9ec78fd07 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223230
+KEY 001: d8582f5f98630f8adc7c1af9ec78fd074ac367e022967a385808, b0b70f1baf0c03db1e2550ff9e428f30 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223200
+KEY 000: b0b70f1baf0c03db1e2550ff9e428f304ac367c222967a385808, 617dc9f914f2fc768eea5b2e2a07f82a =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223170
+Chained reached a key that was verified; short-cutting
+Key index: 7
+CID: 1
+KEY 006: 2fe0a36cfa01d150860e113f6d3295f64ac3687622967a385808, 3bedbe07f42ee852fcd4fc979587765c =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223350
+Chained reached a key that was verified; short-cutting
+Key index: 8
+CID: 1
+KEY 007: 7e622c16acd5d225e1d26a9e3eb90bd44ac3689422967a385808, 2fe0a36cfa01d150860e113f6d3295f6 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223380
+Chained reached a key that was verified; short-cutting
+Key index: 9
+CID: 1
+KEY 008: 23f282138a4fb076dc64b25b2499a2484ac368b222967a385808, 7e622c16acd5d225e1d26a9e3eb90bd4 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223410
+Chained reached a key that was verified; short-cutting
+Key index: 10
+CID: 1
+KEY 009: 726663e1ebb69ac24ba3316aabf14c374ac368d022967a385808, 23f282138a4fb076dc64b25b2499a248 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223440
+Chained reached a key that was verified; short-cutting
+Key index: 11
+CID: 1
+KEY 010: 70d4ec5303e5660161d433360500112a4ac368ee22967a385808, 726663e1ebb69ac24ba3316aabf14c37 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223470
+Chained reached a key that was verified; short-cutting
+Key index: 12
+CID: 1
+KEY 011: 8d50e0de22e300f5a269f43f51e25fb94ac3690c22967a385808, 70d4ec5303e5660161d433360500112a =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223500
+Chained reached a key that was verified; short-cutting
+Key index: 13
+CID: 1
+KEY 012: eb96f225cdf20185a7f92f0b1b7170314ac3692a22967a385808, 8d50e0de22e300f5a269f43f51e25fb9 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223530
+Chained reached a key that was verified; short-cutting
+Key index: 14
+CID: 1
+KEY 013: 6420ce031e40259be14870dff6fe4e094ac3694822967a385808, eb96f225cdf20185a7f92f0b1b717031 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223560
+Chained reached a key that was verified; short-cutting
+Key index: 15
+CID: 1
+KEY 014: 597f6ca2677c3411e8cc7701e38c8d4e4ac3696622967a385808, 6420ce031e40259be14870dff6fe4e09 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223590
+Chained reached a key that was verified; short-cutting
+Key index: 16
+CID: 1
+KEY 015: 170b16c80858d3e8a16000d0ba73dab04ac3698422967a385808, 597f6ca2677c3411e8cc7701e38c8d4e =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223620
+Chained reached a key that was verified; short-cutting
+Key index: 17
+CID: 1
+KEY 016: 13d6b2d11ab65d99a9b6c3edd4c06bbf4ac369a222967a385808, 170b16c80858d3e8a16000d0ba73dab0 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223650
+Chained reached a key that was verified; short-cutting
+Key index: 18
+CID: 1
+KEY 017: 677057c0c9308e4c5ed3d60be8f57d0d4ac369c022967a385808, 13d6b2d11ab65d99a9b6c3edd4c06bbf =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223680
+Chained reached a key that was verified; short-cutting
+Key index: 19
+CID: 1
+KEY 018: fe3b95011b4a0367e1309bc43e1453aa4ac369de22967a385808, 677057c0c9308e4c5ed3d60be8f57d0d =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223710
+Chained reached a key that was verified; short-cutting
+Key index: 20
+CID: 1
+KEY 019: 8648b2ccdd27fe3d05635e75aea3bece4ac369fc22967a385808, fe3b95011b4a0367e1309bc43e1453aa =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223740
+Chained reached a key that was verified; short-cutting
+Key index: 21
+CID: 1
+KEY 020: ac487afb120adbb9b35abfec3fc57f8a4ac36a1a22967a385808, 8648b2ccdd27fe3d05635e75aea3bece =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223770
+Chained reached a key that was verified; short-cutting
+Key index: 22
+CID: 1
+KEY 021: 3a63cb168d40a5dfd77de541d827626a4ac36a3822967a385808, ac487afb120adbb9b35abfec3fc57f8a =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223800
+Chained reached a key that was verified; short-cutting
+Key index: 23
+CID: 1
+KEY 022: 270c28160fa70afdc56113bba7add8ec4ac36a5622967a385808, 3a63cb168d40a5dfd77de541d827626a =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223830
+Chained reached a key that was verified; short-cutting
+Key index: 24
+CID: 1
+KEY 023: 432c3dfc63f5321d53c1651fbf7319674ac36a7422967a385808, 270c28160fa70afdc56113bba7add8ec =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223860
+Chained reached a key that was verified; short-cutting
+Key index: 25
+CID: 1
+KEY 024: 679ec643b20a1b075a6a7bd0473346aa4ac36a9222967a385808, 432c3dfc63f5321d53c1651fbf731967 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223890
+Chained reached a key that was verified; short-cutting
+Key index: 14
+CID: 1
+KEY 013: 6420ce031e40259be14870dff6fe4e094ac3694822967a385808, eb96f225cdf20185a7f92f0b1b717031 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223560
+Chained reached a key that was verified; short-cutting
+Key index: 15
+CID: 1
+KEY 014: 597f6ca2677c3411e8cc7701e38c8d4e4ac3696622967a385808, 6420ce031e40259be14870dff6fe4e09 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223590
+Chained reached a key that was verified; short-cutting
+Key index: 16
+CID: 1
+KEY 015: 170b16c80858d3e8a16000d0ba73dab04ac3698422967a385808, 597f6ca2677c3411e8cc7701e38c8d4e =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223620
+Chained reached a key that was verified; short-cutting
+Key index: 17
+CID: 1
+KEY 016: 13d6b2d11ab65d99a9b6c3edd4c06bbf4ac369a222967a385808, 170b16c80858d3e8a16000d0ba73dab0 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223650
+Chained reached a key that was verified; short-cutting
+Key index: 18
+CID: 1
+KEY 017: 677057c0c9308e4c5ed3d60be8f57d0d4ac369c022967a385808, 13d6b2d11ab65d99a9b6c3edd4c06bbf =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223680
+Chained reached a key that was verified; short-cutting
+Key index: 19
+CID: 1
+KEY 018: fe3b95011b4a0367e1309bc43e1453aa4ac369de22967a385808, 677057c0c9308e4c5ed3d60be8f57d0d =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223710
+Chained reached a key that was verified; short-cutting
+Key index: 20
+CID: 1
+KEY 019: 8648b2ccdd27fe3d05635e75aea3bece4ac369fc22967a385808, fe3b95011b4a0367e1309bc43e1453aa =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223740
+Chained reached a key that was verified; short-cutting
+Key index: 21
+CID: 1
+KEY 020: ac487afb120adbb9b35abfec3fc57f8a4ac36a1a22967a385808, 8648b2ccdd27fe3d05635e75aea3bece =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223770
+Chained reached a key that was verified; short-cutting
+Key index: 22
+CID: 1
+KEY 021: 3a63cb168d40a5dfd77de541d827626a4ac36a3822967a385808, ac487afb120adbb9b35abfec3fc57f8a =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223800
+Chained reached a key that was verified; short-cutting
+Key index: 23
+CID: 1
+KEY 022: 270c28160fa70afdc56113bba7add8ec4ac36a5622967a385808, 3a63cb168d40a5dfd77de541d827626a =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223830
+Chained reached a key that was verified; short-cutting
+Key index: 24
+CID: 1
+KEY 023: 432c3dfc63f5321d53c1651fbf7319674ac36a7422967a385808, 270c28160fa70afdc56113bba7add8ec =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223860
+Chained reached a key that was verified; short-cutting
+Key index: 25
+CID: 1
+KEY 024: 679ec643b20a1b075a6a7bd0473346aa4ac36a9222967a385808, 432c3dfc63f5321d53c1651fbf731967 =? 617dc9f914f2fc768eea5b2e2a07f82a, WN: 1196, TOW: 223890
+Chained reached a key that was verified; short-cutting
+TESLA Key Verification Test:
+
+Every key derived correctly? True
+
+--------------------
+
+MAC Look-up Table Verification:
+
+--------------------
+
+MACSEQ Verification:
+
+PRN: 7, WN: 1196, TOW: 223350; 110011100001 =? 110011100001 - True
+PRN: 7, WN: 1196, TOW: 223380; 001000011001 =? 001000011001 - True
+PRN: 7, WN: 1196, TOW: 223410; 100010010001 =? 100010010001 - True
+PRN: 7, WN: 1196, TOW: 223440; 001010101110 =? 001010101110 - True
+PRN: 7, WN: 1196, TOW: 223470; 101111111110 =? 101111111110 - True
+PRN: 7, WN: 1196, TOW: 223500; 101011001101 =? 101011001101 - True
+PRN: 7, WN: 1196, TOW: 223530; 111001000110 =? 111001000110 - True
+PRN: 7, WN: 1196, TOW: 223560; 100011000100 =? 100011000100 - True
+PRN: 7, WN: 1196, TOW: 223590; 101011100111 =? 101011100111 - True
+PRN: 7, WN: 1196, TOW: 223620; 000100011101 =? 000100011101 - True
+PRN: 7, WN: 1196, TOW: 223650; 100110011101 =? 100110011101 - True
+PRN: 7, WN: 1196, TOW: 223680; 111101000010 =? 111101000010 - True
+PRN: 7, WN: 1196, TOW: 223710; 000111000111 =? 000111000111 - True
+PRN: 7, WN: 1196, TOW: 223740; 010100001111 =? 010100001111 - True
+PRN: 7, WN: 1196, TOW: 223770; 010011010001 =? 010011010001 - True
+PRN: 7, WN: 1196, TOW: 223800; 111110101001 =? 111110101001 - True
+PRN: 7, WN: 1196, TOW: 223830; 000010010010 =? 000010010010 - True
+PRN: 7, WN: 1196, TOW: 223860; 110110000011 =? 110110000011 - True
+PRN: 7, WN: 1196, TOW: 223890; 011100101110 =? 011100101110 - True
+PRN: 33, WN: 1196, TOW: 223590; 100101011000 =? 100101011000 - True
+PRN: 33, WN: 1196, TOW: 223620; 001010110010 =? 001010110010 - True
+PRN: 33, WN: 1196, TOW: 223650; 100110001100 =? 100110001100 - True
+PRN: 33, WN: 1196, TOW: 223680; 011101100111 =? 011101100111 - True
+PRN: 33, WN: 1196, TOW: 223710; 101010111011 =? 101010111011 - True
+PRN: 33, WN: 1196, TOW: 223740; 010110001010 =? 010110001010 - True
+PRN: 33, WN: 1196, TOW: 223770; 001010111011 =? 001010111011 - True
+PRN: 33, WN: 1196, TOW: 223800; 010110101100 =? 010110101100 - True
+PRN: 33, WN: 1196, TOW: 223830; 010010011001 =? 010010011001 - True
+PRN: 33, WN: 1196, TOW: 223860; 101101010001 =? 101101010001 - True
+PRN: 33, WN: 1196, TOW: 223890; 001010000100 =? 001010000100 - True
+
+--------------------
+
+Tag Verification:
+No subframe from PRN 15 at time WN: 1196, TOW: 223350 for Cross-0 authentication
+No subframe from PRN 21 at time WN: 1196, TOW: 223350 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223350 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223380 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223380 for Cross-0 authentication
+No subframe from PRN 24 at time WN: 1196, TOW: 223380 for Cross-0 authentication
+No subframe from PRN 18 at time WN: 1196, TOW: 223380 for Cross-12 authentication
+WN: 1196, TOW: 223410, Self-Tag0 - Computed tag: bf3f4772fc, Reference: bf3f4772fc Equal? - True
+WN: 1196, TOW: 223410, Self-4 - Computed tag: 65d7c0ec40, Reference: 65d7c0ec40 Equal? - True
+No subframe from PRN 15 at time WN: 1196, TOW: 223410 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223410 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223410 for Cross-0 authentication
+WN: 1196, TOW: 223440, Self-Tag0 - Computed tag: 4ac011578f, Reference: 4ac011578f Equal? - True
+No subframe from PRN 25 at time WN: 1196, TOW: 223440 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223440 for Cross-0 authentication
+No subframe from PRN 24 at time WN: 1196, TOW: 223440 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223440 for Cross-12 authentication
+WN: 1196, TOW: 223470, Self-Tag0 - Computed tag: 025a6dd051, Reference: 025a6dd051 Equal? - True
+WN: 1196, TOW: 223470, Self-4 - Computed tag: 950a1d1c4c, Reference: 950a1d1c4c Equal? - True
+No subframe from PRN 21 at time WN: 1196, TOW: 223470 for Cross-0 authentication
+No subframe from PRN 4 at time WN: 1196, TOW: 223470 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223470 for Cross-0 authentication
+WN: 1196, TOW: 223500, Self-Tag0 - Computed tag: 0b5b328636, Reference: 0b5b328636 Equal? - True
+No subframe from PRN 25 at time WN: 1196, TOW: 223500 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223500 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223500 for Cross-0 authentication
+No subframe from PRN 21 at time WN: 1196, TOW: 223500 for Cross-12 authentication
+WN: 1196, TOW: 223530, Self-Tag0 - Computed tag: 6edc8d6889, Reference: 6edc8d6889 Equal? - True
+WN: 1196, TOW: 223530, Self-4 - Computed tag: ada2c05a0e, Reference: ada2c05a0e Equal? - True
+No subframe from PRN 4 at time WN: 1196, TOW: 223530 for Cross-0 authentication
+No subframe from PRN 5 at time WN: 1196, TOW: 223530 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223530 for Cross-0 authentication
+WN: 1196, TOW: 223560, Self-Tag0 - Computed tag: 2d6b2ac242, Reference: 2d6b2ac242 Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223560 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223560 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223560 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223560 for Cross-12 authentication
+WN: 1196, TOW: 223590, Self-Tag0 - Computed tag: 50d74357fb, Reference: 50d74357fb Equal? - True
+WN: 1196, TOW: 223590, Self-4 - Computed tag: 32c353793c, Reference: 32c353793c Equal? - True
+No subframe from PRN 21 at time WN: 1196, TOW: 223590 for Cross-0 authentication
+No subframe from PRN 4 at time WN: 1196, TOW: 223590 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223590 for Cross-0 authentication
+WN: 1196, TOW: 223620, Self-Tag0 - Computed tag: a8e11502c9, Reference: a8e11502c9 Equal? - True
+No subframe from PRN 21 at time WN: 1196, TOW: 223590 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223590 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223590 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223620 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223620 for Cross-0 authentication
+No subframe from PRN 27 at time WN: 1196, TOW: 223620 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223620 for Cross-12 authentication
+WN: 1196, TOW: 223650, Self-Tag0 - Computed tag: 045dba0949, Reference: 045dba0949 Equal? - True
+WN: 1196, TOW: 223650, Self-4 - Computed tag: 3ef5a3db50, Reference: 3ef5a3db50 Equal? - True
+No subframe from PRN 25 at time WN: 1196, TOW: 223620 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223620 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223620 for Cross-0 authentication
+No subframe from PRN 4 at time WN: 1196, TOW: 223620 for Cross-12 authentication
+WN: 1196, TOW: 223650, Self-Tag0 - Computed tag: 41ac5d80d2, Reference: 41ac5d80d2 Equal? - True
+WN: 1196, TOW: 223650, Self-4 - Computed tag: 9e8e9410e4, Reference: 9e8e9410e4 Equal? - True
+No subframe from PRN 11 at time WN: 1196, TOW: 223650 for Cross-0 authentication
+No subframe from PRN 21 at time WN: 1196, TOW: 223650 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223650 for Cross-0 authentication
+WN: 1196, TOW: 223680, Self-Tag0 - Computed tag: 67d0a78fa7, Reference: 67d0a78fa7 Equal? - True
+No subframe from PRN 21 at time WN: 1196, TOW: 223650 for Cross-0 authentication
+No subframe from PRN 27 at time WN: 1196, TOW: 223650 for Cross-0 authentication
+No subframe from PRN 25 at time WN: 1196, TOW: 223650 for Cross-0 authentication
+WN: 1196, TOW: 223680, Self-Tag0 - Computed tag: d83319fa49, Reference: d83319fa49 Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223680 for Cross-0 authentication
+No subframe from PRN 27 at time WN: 1196, TOW: 223680 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223680 for Cross-0 authentication
+No subframe from PRN 14 at time WN: 1196, TOW: 223680 for Cross-12 authentication
+WN: 1196, TOW: 223710, Self-12 - Computed tag: 2d6023d34b, Reference: 2d6023d34b Equal? - True
+WN: 1196, TOW: 223710, Self-Tag0 - Computed tag: 3f6c410ce6, Reference: 3f6c410ce6 Equal? - True
+WN: 1196, TOW: 223710, Self-4 - Computed tag: 43ea76328a, Reference: 43ea76328a Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223680 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223680 for Cross-0 authentication
+No subframe from PRN 4 at time WN: 1196, TOW: 223680 for Cross-0 authentication
+No subframe from PRN 14 at time WN: 1196, TOW: 223680 for Cross-12 authentication
+WN: 1196, TOW: 223710, Self-Tag0 - Computed tag: c03e00f0ff, Reference: c03e00f0ff Equal? - True
+WN: 1196, TOW: 223710, Self-4 - Computed tag: 9f1877b710, Reference: 9f1877b710 Equal? - True
+No subframe from PRN 11 at time WN: 1196, TOW: 223710 for Cross-0 authentication
+No subframe from PRN 21 at time WN: 1196, TOW: 223710 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223710 for Cross-0 authentication
+WN: 1196, TOW: 223740, Self-12 - Computed tag: e965f54fa5, Reference: e965f54fa5 Equal? - True
+WN: 1196, TOW: 223740, Self-Tag0 - Computed tag: 0d949bba10, Reference: 0d949bba10 Equal? - True
+No subframe from PRN 21 at time WN: 1196, TOW: 223710 for Cross-0 authentication
+No subframe from PRN 27 at time WN: 1196, TOW: 223710 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223710 for Cross-0 authentication
+WN: 1196, TOW: 223740, Self-Tag0 - Computed tag: 07fb5e225f, Reference: 07fb5e225f Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223740 for Cross-0 authentication
+No subframe from PRN 27 at time WN: 1196, TOW: 223740 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223740 for Cross-0 authentication
+No subframe from PRN 14 at time WN: 1196, TOW: 223740 for Cross-12 authentication
+WN: 1196, TOW: 223770, Self-12 - Computed tag: 20e79b7089, Reference: 20e79b7089 Equal? - True
+WN: 1196, TOW: 223770, Self-Tag0 - Computed tag: a104533ee2, Reference: a104533ee2 Equal? - True
+WN: 1196, TOW: 223770, Self-4 - Computed tag: 1e83f1b007, Reference: 1e83f1b007 Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223740 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223740 for Cross-0 authentication
+No subframe from PRN 4 at time WN: 1196, TOW: 223740 for Cross-0 authentication
+No subframe from PRN 14 at time WN: 1196, TOW: 223740 for Cross-12 authentication
+WN: 1196, TOW: 223770, Self-Tag0 - Computed tag: b6689b94c4, Reference: b6689b94c4 Equal? - True
+WN: 1196, TOW: 223770, Self-4 - Computed tag: 27633d49f2, Reference: 27633d49f2 Equal? - True
+No subframe from PRN 11 at time WN: 1196, TOW: 223770 for Cross-0 authentication
+No subframe from PRN 4 at time WN: 1196, TOW: 223770 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223770 for Cross-0 authentication
+WN: 1196, TOW: 223800, Self-12 - Computed tag: ff07c3a8d1, Reference: ff07c3a8d1 Equal? - True
+WN: 1196, TOW: 223800, Self-Tag0 - Computed tag: a5d4f0a1b8, Reference: a5d4f0a1b8 Equal? - True
+No subframe from PRN 27 at time WN: 1196, TOW: 223770 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223770 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223770 for Cross-0 authentication
+WN: 1196, TOW: 223800, Self-Tag0 - Computed tag: c27797d072, Reference: c27797d072 Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223800 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223800 for Cross-0 authentication
+No subframe from PRN 14 at time WN: 1196, TOW: 223800 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223800 for Cross-12 authentication
+WN: 1196, TOW: 223830, Self-12 - Computed tag: 9dcd9d4b2f, Reference: 9dcd9d4b2f Equal? - True
+WN: 1196, TOW: 223830, Self-Tag0 - Computed tag: 1452b23d79, Reference: 1452b23d79 Equal? - True
+WN: 1196, TOW: 223830, Self-4 - Computed tag: 9443b92fae, Reference: 9443b92fae Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223800 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223800 for Cross-0 authentication
+No subframe from PRN 4 at time WN: 1196, TOW: 223800 for Cross-0 authentication
+No subframe from PRN 14 at time WN: 1196, TOW: 223800 for Cross-12 authentication
+WN: 1196, TOW: 223830, Self-Tag0 - Computed tag: 34af2f5d6c, Reference: 34af2f5d6c Equal? - True
+WN: 1196, TOW: 223830, Self-4 - Computed tag: fa16d6b470, Reference: fa16d6b470 Equal? - True
+No subframe from PRN 4 at time WN: 1196, TOW: 223830 for Cross-0 authentication
+No subframe from PRN 5 at time WN: 1196, TOW: 223830 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223830 for Cross-0 authentication
+WN: 1196, TOW: 223860, Self-12 - Computed tag: 7d7cf1baab, Reference: 7d7cf1baab Equal? - True
+WN: 1196, TOW: 223860, Self-Tag0 - Computed tag: 4afb2de2cf, Reference: 4afb2de2cf Equal? - True
+No subframe from PRN 3 at time WN: 1196, TOW: 223830 for Cross-0 authentication
+No subframe from PRN 5 at time WN: 1196, TOW: 223830 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223830 for Cross-0 authentication
+WN: 1196, TOW: 223860, Self-Tag0 - Computed tag: 5401edefd4, Reference: 5401edefd4 Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223860 for Cross-0 authentication
+No subframe from PRN 3 at time WN: 1196, TOW: 223860 for Cross-0 authentication
+No subframe from PRN 14 at time WN: 1196, TOW: 223860 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223860 for Cross-12 authentication
+WN: 1196, TOW: 223890, Self-12 - Computed tag: 16c43706bf, Reference: 16c43706bf Equal? - True
+WN: 1196, TOW: 223890, Self-Tag0 - Computed tag: 8d165222bf, Reference: 8d165222bf Equal? - True
+WN: 1196, TOW: 223890, Self-4 - Computed tag: 14f97834a4, Reference: 14f97834a4 Equal? - True
+No subframe from PRN 8 at time WN: 1196, TOW: 223860 for Cross-0 authentication
+No subframe from PRN 11 at time WN: 1196, TOW: 223860 for Cross-0 authentication
+No subframe from PRN 4 at time WN: 1196, TOW: 223860 for Cross-0 authentication
+No subframe from PRN 14 at time WN: 1196, TOW: 223860 for Cross-12 authentication
+WN: 1196, TOW: 223890, Self-Tag0 - Computed tag: 5501e88e27, Reference: 5501e88e27 Equal? - True
+WN: 1196, TOW: 223890, Self-4 - Computed tag: 5af6f31caf, Reference: 5af6f31caf Equal? - True
+No subframe from PRN 4 at time WN: 1196, TOW: 223890 for Cross-0 authentication
+No subframe from PRN 5 at time WN: 1196, TOW: 223890 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223890 for Cross-0 authentication
+WN: 1196, TOW: 223920, Self-12 - Computed tag: aef79f9e81, Reference: aef79f9e81 Equal? - True
+WN: 1196, TOW: 223920, Self-Tag0 - Computed tag: 1779c8b130, Reference: 1779c8b130 Equal? - True
+No subframe from PRN 3 at time WN: 1196, TOW: 223890 for Cross-0 authentication
+No subframe from PRN 5 at time WN: 1196, TOW: 223890 for Cross-0 authentication
+No subframe from PRN 8 at time WN: 1196, TOW: 223890 for Cross-0 authentication
+WN: 1196, TOW: 223920, Self-Tag0 - Computed tag: 0286019fa5, Reference: 0286019fa5 Equal? - True
+
+--------------------
+
+Final messages state:
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223350
+  -> GST_SF: WN: 1196, TOW: 223350
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 5
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0xf178f8142f
+    -> MACSEQ: 110011100001, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x1500ee5b9d; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+      -> Tag: 0x38d6279a6a; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x99db20cc32; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0xf603d18c8a; Info - PRN_D: 24, ADKD: 0, Reserved: 0101
+      -> Tag: 0xfeb3910a55; Info - PRN_D: 18, ADKD: 12, Reserved: 0100
+    -> TESLA Key: 0x3bedbe07f42ee852fcd4fc979587765c, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-12, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223380
+  -> GST_SF: WN: 1196, TOW: 223380
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 5
+    -> DSM Block ID: 2
+  -> MACK messages: 
+    -> Tag_0: 0xbf3f4772fc
+    -> MACSEQ: 001000011001, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x6cf6956a47; Info - PRN_D: 15, ADKD: 0, Reserved: 0101
+      -> Tag: 0x65d7c0ec40; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0xbac374612; Info - PRN_D: 21, ADKD: 0, Reserved: 0100
+      -> Tag: 0x2d6023d34b; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x3fa93bfeea; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+    -> TESLA Key: 0x2fe0a36cfa01d150860e113f6d3295f6, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-12, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223410
+  -> GST_SF: WN: 1196, TOW: 223410
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 5
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0x4ac011578f
+    -> MACSEQ: 100010010001, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x1c665fe611; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+      -> Tag: 0x932e9e0fcd; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0xe965f54fa5; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x47edd6e639; Info - PRN_D: 24, ADKD: 0, Reserved: 0101
+      -> Tag: 0xc6ce24ae51; Info - PRN_D: 18, ADKD: 12, Reserved: 0100
+    -> TESLA Key: 0x7e622c16acd5d225e1d26a9e3eb90bd4, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-12, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223440
+  -> GST_SF: WN: 1196, TOW: 223440
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 5
+    -> DSM Block ID: 4
+  -> MACK messages: 
+    -> Tag_0: 0x25a6dd051
+    -> MACSEQ: 001010101110, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x6e7adfd76e; Info - PRN_D: 15, ADKD: 0, Reserved: 0101
+      -> Tag: 0x950a1d1c4c; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x60347c1f3b; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0x20e79b7089; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0xd2140ac3b8; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+    -> TESLA Key: 0x23f282138a4fb076dc64b25b2499a248, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-12, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223470
+  -> GST_SF: WN: 1196, TOW: 223470
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 5
+    -> DSM Block ID: 5
+  -> MACK messages: 
+    -> Tag_0: 0xb5b328636
+    -> MACSEQ: 101111111110, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xd71549f74b; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+      -> Tag: 0x634fd51597; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0xff07c3a8d1; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x2a9964e8a0; Info - PRN_D: 24, ADKD: 0, Reserved: 0101
+      -> Tag: 0xce841ff7bf; Info - PRN_D: 11, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x726663e1ebb69ac24ba3316aabf14c37, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-12, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223500
+  -> GST_SF: WN: 1196, TOW: 223500
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 5
+    -> DSM Block ID: 6
+  -> MACK messages: 
+    -> Tag_0: 0x6edc8d6889
+    -> MACSEQ: 101011001101, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x6fbe0924e3; Info - PRN_D: 21, ADKD: 0, Reserved: 0100
+      -> Tag: 0xada2c05a0e; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x72a6b4aea5; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0x9dcd9d4b2f; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0xefc5304a13; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+    -> TESLA Key: 0x70d4ec5303e5660161d433360500112a, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-12, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223530
+  -> GST_SF: WN: 1196, TOW: 223530
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 7
+  -> MACK messages: 
+    -> Tag_0: 0x2d6b2ac242
+    -> MACSEQ: 111001000110, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x915b35e017; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+      -> Tag: 0x55011c7b13; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x7d7cf1baab; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x5ff3b3e0ac; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0xa3597d2929; Info - PRN_D: 21, ADKD: 12, Reserved: 0100
+    -> TESLA Key: 0x8d50e0de22e300f5a269f43f51e25fb9, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-12, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223560
+  -> GST_SF: WN: 1196, TOW: 223560
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1196
+    -> TOWHK: 62
+    -> TOWK: 223200
+    -> GST_0: WN: 1196, TOW: 223200
+    -> GST_SF_K: WN: 1196, TOW: 223170
+    -> Alpha(random): 001000101001011001111010001110000101100000001000
+  -> MACK messages: 
+    -> Tag_0: 0x50d74357fb
+    -> MACSEQ: 100011000100, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x7679bafb53; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0x32c353793c; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0xc8d9ae7934; Info - PRN_D: 5, ADKD: 0, Reserved: 0011
+      -> Tag: 0x16c43706bf; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x48de960314; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+    -> TESLA Key: 0xeb96f225cdf20185a7f92f0b1b717031, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-12, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223590
+  -> GST_SF: WN: 1196, TOW: 223590
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0xa8e11502c9
+    -> MACSEQ: 101011100111, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xd43a9531c7; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0xa1bdba5a19; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+      -> Tag: 0xaef79f9e81; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0xe81f93d462; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x7b8a9de12b; Info - PRN_D: 11, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x6420ce031e40259be14870dff6fe4e09, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223590
+  -> GST_SF: WN: 1196, TOW: 223590
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0x22b61fb560
+    -> MACSEQ: 100101011000, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x403765a653; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+      -> Tag: 0x3d499f7e5; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0x9e74a5139f; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0xe916866159; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0xc58dfbc07c; Info - PRN_D: 4, ADKD: 12, Reserved: 0101
+    -> TESLA Key: 0x6420ce031e40259be14870dff6fe4e09, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223620
+  -> GST_SF: WN: 1196, TOW: 223620
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 2
+  -> MACK messages: 
+    -> Tag_0: 0x45dba0949
+    -> MACSEQ: 000100011101, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x644eca18a2; Info - PRN_D: 21, ADKD: 0, Reserved: 0100
+      -> Tag: 0x3ef5a3db50; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0xd425fa1dc2; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0x943e3a8060; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0xdbe88a71c9; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0x597f6ca2677c3411e8cc7701e38c8d4e, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223620
+  -> GST_SF: WN: 1196, TOW: 223620
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 4
+  -> MACK messages: 
+    -> Tag_0: 0x41ac5d80d2
+    -> MACSEQ: 001010110010, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xed8aa19299; Info - PRN_D: 21, ADKD: 0, Reserved: 0100
+      -> Tag: 0x9e8e9410e4; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0xf5927293c4; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x346eae8fa7; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0x84a2bbb57e; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+    -> TESLA Key: 0x597f6ca2677c3411e8cc7701e38c8d4e, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223650
+  -> GST_SF: WN: 1196, TOW: 223650
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0x67d0a78fa7
+    -> MACSEQ: 100110011101, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x34d670b54f; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0x18b7b56c0a; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+      -> Tag: 0x1abdc2e9b0; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0xd906021d37; Info - PRN_D: 27, ADKD: 0, Reserved: 0011
+      -> Tag: 0xe15ae2bb14; Info - PRN_D: 3, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x170b16c80858d3e8a16000d0ba73dab0, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223650
+  -> GST_SF: WN: 1196, TOW: 223650
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 5
+  -> MACK messages: 
+    -> Tag_0: 0xd83319fa49
+    -> MACSEQ: 100110001100, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x59d627eab3; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+      -> Tag: 0x3cf6ce4838; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0xf5d289cabb; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0x82e8ba5e6a; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0x794e87f7c8; Info - PRN_D: 4, ADKD: 12, Reserved: 0101
+    -> TESLA Key: 0x170b16c80858d3e8a16000d0ba73dab0, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223680
+  -> GST_SF: WN: 1196, TOW: 223680
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 4
+  -> MACK messages: 
+    -> Tag_0: 0x3f6c410ce6
+    -> MACSEQ: 111101000010, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x2e470d0995; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0x43ea76328a; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x6f021eab43; Info - PRN_D: 21, ADKD: 0, Reserved: 0100
+      -> Tag: 0xc7da51e9f3; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x64c07c300c; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0x13d6b2d11ab65d99a9b6c3edd4c06bbf, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223680
+  -> GST_SF: WN: 1196, TOW: 223680
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 6
+  -> MACK messages: 
+    -> Tag_0: 0xc03e00f0ff
+    -> MACSEQ: 011101100111, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x8288b172f6; Info - PRN_D: 21, ADKD: 0, Reserved: 0100
+      -> Tag: 0x9f1877b710; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x423a1c19df; Info - PRN_D: 27, ADKD: 0, Reserved: 0011
+      -> Tag: 0x5deadfc8cc; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0xedb6a2f293; Info - PRN_D: 25, ADKD: 0, Reserved: 0100
+    -> TESLA Key: 0x13d6b2d11ab65d99a9b6c3edd4c06bbf, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223710
+  -> GST_SF: WN: 1196, TOW: 223710
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 5
+  -> MACK messages: 
+    -> Tag_0: 0xd949bba10
+    -> MACSEQ: 000111000111, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xc4af8c57e8; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0x87b3bc9fe7; Info - PRN_D: 27, ADKD: 0, Reserved: 0011
+      -> Tag: 0x7fa4e97635; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0xaa815f8463; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x18a358ea3; Info - PRN_D: 14, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x677057c0c9308e4c5ed3d60be8f57d0d, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223710
+  -> GST_SF: WN: 1196, TOW: 223710
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 7
+  -> MACK messages: 
+    -> Tag_0: 0x7fb5e225f
+    -> MACSEQ: 101010111011, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xe9469ebbb8; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0x9065d225e9; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0xdd105103d7; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0xbb5b48f4dd; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0x4e4ba5f32b; Info - PRN_D: 14, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x677057c0c9308e4c5ed3d60be8f57d0d, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223740
+  -> GST_SF: WN: 1196, TOW: 223740
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 6
+  -> MACK messages: 
+    -> Tag_0: 0xa104533ee2
+    -> MACSEQ: 010100001111, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xcf11ee5dc8; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0x1e83f1b007; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x37910f86ba; Info - PRN_D: 21, ADKD: 0, Reserved: 0100
+      -> Tag: 0x9e0fe10af; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x78d2b2eb15; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0xfe3b95011b4a0367e1309bc43e1453aa, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223740
+  -> GST_SF: WN: 1196, TOW: 223740
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1196
+    -> TOWHK: 62
+    -> TOWK: 223200
+    -> GST_0: WN: 1196, TOW: 223200
+    -> GST_SF_K: WN: 1196, TOW: 223170
+    -> Alpha(random): 001000101001011001111010001110000101100000001000
+  -> MACK messages: 
+    -> Tag_0: 0xb6689b94c4
+    -> MACSEQ: 010110001010, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xfaa88b18d8; Info - PRN_D: 21, ADKD: 0, Reserved: 0100
+      -> Tag: 0x27633d49f2; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x7641d369bc; Info - PRN_D: 27, ADKD: 0, Reserved: 0011
+      -> Tag: 0x6739929509; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0x5d35efebb4; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0xfe3b95011b4a0367e1309bc43e1453aa, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223770
+  -> GST_SF: WN: 1196, TOW: 223770
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 7
+  -> MACK messages: 
+    -> Tag_0: 0xa5d4f0a1b8
+    -> MACSEQ: 010011010001, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xac3a449dcd; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0xc7ea1edbf0; Info - PRN_D: 27, ADKD: 0, Reserved: 0011
+      -> Tag: 0x781fbd1fb0; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x9b3b822d99; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x21bc2b519e; Info - PRN_D: 14, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x8648b2ccdd27fe3d05635e75aea3bece, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223770
+  -> GST_SF: WN: 1196, TOW: 223770
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0xc27797d072
+    -> MACSEQ: 001010111011, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xe21ca43dcc; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0x5b166183d3; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0x6f81662957; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0x98e6dc77ac; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0xdc4b886a34; Info - PRN_D: 14, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x8648b2ccdd27fe3d05635e75aea3bece, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223800
+  -> GST_SF: WN: 1196, TOW: 223800
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 0
+    -> Nb. of Blocks (NB): 8
+    -> Public Key ID (PKID): 2
+    -> Chain ID of KROOT (CIDKR): 1
+    -> Hash Function (HF): SHA-256
+    -> MAC Function (MF): HMAC-SHA-256
+    -> Key Size (KS): 128
+    -> MAC Size (TS): 40
+    -> MAC Look-up Table (MACLT): 33
+    -> WNK: 1196
+    -> TOWHK: 62
+    -> TOWK: 223200
+    -> GST_0: WN: 1196, TOW: 223200
+    -> GST_SF_K: WN: 1196, TOW: 223170
+    -> Alpha(random): 001000101001011001111010001110000101100000001000
+  -> MACK messages: 
+    -> Tag_0: 0x1452b23d79
+    -> MACSEQ: 111110101001, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xa9bcbd4a6f; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0x9443b92fae; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x333c4f2ca3; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0xbcf5863d49; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x24df157e09; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0xac487afb120adbb9b35abfec3fc57f8a, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223800
+  -> GST_SF: WN: 1196, TOW: 223800
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 2
+  -> MACK messages: 
+    -> Tag_0: 0x34af2f5d6c
+    -> MACSEQ: 010110101100, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xada41f2a; Info - PRN_D: 27, ADKD: 0, Reserved: 0011
+      -> Tag: 0xfa16d6b470; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x6af78fa0a3; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x80c0b08526; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0xfcbbc8bd51; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0xac487afb120adbb9b35abfec3fc57f8a, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223830
+  -> GST_SF: WN: 1196, TOW: 223830
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 1
+  -> MACK messages: 
+    -> Tag_0: 0x4afb2de2cf
+    -> MACSEQ: 000010010010, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x652a789989; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0xe0e908f861; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x3ff510048c; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x87327a2104; Info - PRN_D: 14, ADKD: 0, Reserved: 0011
+      -> Tag: 0xcc364c5140; Info - PRN_D: 11, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x3a63cb168d40a5dfd77de541d827626a, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223830
+  -> GST_SF: WN: 1196, TOW: 223830
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0x5401edefd4
+    -> MACSEQ: 010010011001, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x6a445e5b13; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0x78dfa2889c; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0x7d44be28e8; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0x79ab13d3bd; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0xbd835b0039; Info - PRN_D: 14, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x3a63cb168d40a5dfd77de541d827626a, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+    -> Tag Type: Self-4, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223860
+  -> GST_SF: WN: 1196, TOW: 223860
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 2
+  -> MACK messages: 
+    -> Tag_0: 0x8d165222bf
+    -> MACSEQ: 110110000011, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0x2981ee0d33; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0x14f97834a4; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x2af9d1e180; Info - PRN_D: 5, ADKD: 0, Reserved: 0011
+      -> Tag: 0x726010721c; Info - PRN_D: 7, ADKD: 12, Reserved: 0011
+      -> Tag: 0x1cf5e7c1f7; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0x270c28160fa70afdc56113bba7add8ec, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 7, with verified TESLA Key
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223860
+  -> GST_SF: WN: 1196, TOW: 223860
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 4
+  -> MACK messages: 
+    -> Tag_0: 0x5501e88e27
+    -> MACSEQ: 101101010001, Verified, with verified TESLA Key
+    -> Reserved: 0011
+    -> Tag&Info
+      -> Tag: 0xe3e38805fb; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x5af6f31caf; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0xaa7df4ec5a; Info - PRN_D: 5, ADKD: 0, Reserved: 0011
+      -> Tag: 0x22630a78f0; Info - PRN_D: 33, ADKD: 12, Reserved: 0011
+      -> Tag: 0xcc660bb084; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0x270c28160fa70afdc56113bba7add8ec, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: True
+    -> Tag Type: Self-Tag0, Verified by PRN 33, with verified TESLA Key
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223890
+  -> GST_SF: WN: 1196, TOW: 223890
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 3
+  -> MACK messages: 
+    -> Tag_0: 0x1779c8b130
+    -> MACSEQ: 011100101110, Verified, with verified TESLA Key
+    -> Reserved: 1100
+    -> Tag&Info
+      -> Tag: 0x652b9f66a7; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0xb8528a07db; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x25aeb13e65; Info - PRN_D: 7, ADKD: 12, Reserved: 1100
+      -> Tag: 0x303dc4829c; Info - PRN_D: 14, ADKD: 0, Reserved: 0011
+      -> Tag: 0x838e11b301; Info - PRN_D: 11, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x432c3dfc63f5321d53c1651fbf731967, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: False
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223890
+  -> GST_SF: WN: 1196, TOW: 223890
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 5
+  -> MACK messages: 
+    -> Tag_0: 0x286019fa5
+    -> MACSEQ: 001010000100, Verified, with verified TESLA Key
+    -> Reserved: 1100
+    -> Tag&Info
+      -> Tag: 0xca4405321d; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+      -> Tag: 0x9400b75b0e; Info - PRN_D: 11, ADKD: 0, Reserved: 0011
+      -> Tag: 0x8fb374317a; Info - PRN_D: 33, ADKD: 12, Reserved: 1100
+      -> Tag: 0xf21dd4b291; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0x498bf4ae49; Info - PRN_D: 14, ADKD: 12, Reserved: 0011
+    -> TESLA Key: 0x432c3dfc63f5321d53c1651fbf731967, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: False
+
+-> PRN: 7
+  -> WN: 1196
+  -> TOW: 223920
+  -> GST_SF: WN: 1196, TOW: 223920
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 4
+  -> MACK messages: 
+    -> Tag_0: 0x30fccb968c
+    -> MACSEQ: 001100001001, NOT Verified, withOUT verified TESLA Key
+    -> Reserved: 0100
+    -> Tag&Info
+      -> Tag: 0x2be3ea7125; Info - PRN_D: 4, ADKD: 0, Reserved: 0101
+      -> Tag: 0x41748d06d2; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x2a7e4925cf; Info - PRN_D: 5, ADKD: 0, Reserved: 0011
+      -> Tag: 0x20bfc11436; Info - PRN_D: 7, ADKD: 12, Reserved: 0100
+      -> Tag: 0x29a081cd3f; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0x679ec643b20a1b075a6a7bd0473346aa, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: False
+
+-> PRN: 33
+  -> WN: 1196
+  -> TOW: 223920
+  -> GST_SF: WN: 1196, TOW: 223920
+  -> HKROOT:
+    -> NMA Status: Test
+    -> Chain Status: Nominal
+    -> Chain ID: 1
+    -> Reserved: 0
+    -> DSM ID: 6
+    -> DSM Block ID: 6
+  -> MACK messages: 
+    -> Tag_0: 0x44be59e22e
+    -> MACSEQ: 110011110000, NOT Verified, withOUT verified TESLA Key
+    -> Reserved: 0100
+    -> Tag&Info
+      -> Tag: 0x9c3f92ce64; Info - PRN_D: 3, ADKD: 0, Reserved: 0011
+      -> Tag: 0x7cd9f41e86; Info - PRN_D: 255, ADKD: 4, Reserved: 0000
+      -> Tag: 0x1231bde6a0; Info - PRN_D: 5, ADKD: 0, Reserved: 0011
+      -> Tag: 0x420933a15b; Info - PRN_D: 33, ADKD: 12, Reserved: 0100
+      -> Tag: 0xc4df82ccf5; Info - PRN_D: 8, ADKD: 0, Reserved: 0011
+    -> TESLA Key: 0x679ec643b20a1b075a6a7bd0473346aa, verified
+    -> Padding: 0000000000000000
+    -> Subframe MACK Sequence Verified
+  -> Navdata Authentic: False
+
