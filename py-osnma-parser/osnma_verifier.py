@@ -1,5 +1,6 @@
 from types import ModuleType
-from typing import Union, Any
+from typing import Tuple, Union, Any
+from collections import OrderedDict
 from math import ceil
 from pathlib import Path
 from xml.etree import ElementTree as ET
@@ -23,6 +24,8 @@ class Chain:
         self._HF: ModuleType = None
         self.alpha: bytes = None
         self.keys: dict[int, bytes] = dict()
+        # Floating keys, indexed by GST_SF_K, pointing to a tuple of the the key[0] and alpha[1] value
+        self.floating_keys: dict[GST, Tuple[bytes, bytes]] = OrderedDict()
         self.MACKLT_SEQ = None
         self._MF_ID: int = None
         self.message_with_header = None
@@ -49,6 +52,10 @@ class Chain:
             raise ValueError(f'Invalid value for mac function: {self._MF_ID}')
 
     def new_kroot(self, key: bytes, GST_SF_K: GST, hf_id: int, mf_id: int, alpha: bytes, maclt_seq: tuple, message_with_header: OSNMA):
+        # if we already have a root key, archive it, along with the alpha value. 
+        # Chain parameters are not changed on (floating) hkroot change
+        if self.GST_SF_K is not None:
+            self.floating_keys[self.GST_SF_K] = (self.keys[0], self.alpha)
         self.keys.clear()
         self.keys[0] = key
         self.hash_func = hf_id
@@ -181,10 +188,35 @@ class OSNMA_Verifier:
                 print('No root key in this chain')
             return False
         
-        root_key_bytes = self.chains[msg.CID].keys[0]
-        GST_0 = self.chains[msg.CID].GST_SF_K.add_time(30)
+        uses_older_key = False
 
-        alpha_bytes = self.chains[msg.CID].alpha
+        if msg.GST_SF <= self.chains[msg.CID].GST_SF_K:
+            uses_older_key = True
+
+        root_key_bytes: bytes = None
+        GST_0: GST = None
+        alpha_bytes: bytes = None
+
+        if uses_older_key:
+            print(f'Key is associated with older (floating) HKROOT', end='')
+            key_found = False
+            for o_gst_sf_k, (o_key_bytes, o_alpha_bytes) in reversed(self.chains[msg.CID].floating_keys.items()):
+                if o_gst_sf_k < msg.GST_SF:
+                    root_key_bytes = o_key_bytes
+                    GST_0 = o_gst_sf_k.add_time(30)
+                    alpha_bytes = o_alpha_bytes
+                    key_found = True
+                    break
+
+            if key_found:
+                print(f' at GST_SF_K {str(GST_0.add_time(30))}')
+            else:
+                print(f', but it was not found in the floating HKROOT archive')
+                return False
+        else:
+            root_key_bytes = self.chains[msg.CID].keys[0]
+            GST_0 = self.chains[msg.CID].GST_SF_K.add_time(30)
+            alpha_bytes = self.chains[msg.CID].alpha
 
         # The time between the messages has to be a 0 mod 30, which the documentation does not explicitly say
         GST_SF_i = msg.GST_SF
@@ -213,13 +245,14 @@ class OSNMA_Verifier:
             i -= 1
 
             if i == 1:
-                GST_SF_i = self.chains[msg.CID].GST_SF_K
+                # GST_SF_K
+                GST_SF_i = GST_0.add_time(-30)
             else:
                 GST_SF_i = GST_SF_i.add_time(-30)
             
             GST_SF_i_bytes = binstr_to_bytes(GST_SF_i.to_binstr())
             
-            if i in self.chains[msg.CID].keys and self.chains[msg.CID].keys[i] == prev_key and self.TAKE_SHORTCUTS:
+            if self.TAKE_SHORTCUTS and not uses_older_key and i in self.chains[msg.CID].keys and self.chains[msg.CID].keys[i] == prev_key:
                 prev_key = root_key_bytes
                 if self.DEBUG:
                     print('Chained reached a key that was verified; short-cutting')
@@ -227,7 +260,8 @@ class OSNMA_Verifier:
         
         msg.TESLA_key_verified = prev_key == root_key_bytes
 
-        if msg.TESLA_key_verified:
+        # For older HKROOTs, don't store another chain
+        if msg.TESLA_key_verified and not uses_older_key:
             self.chains[msg.CID].keys[key_index] = current_key
         
         return msg.TESLA_key_verified
@@ -286,6 +320,8 @@ class OSNMA_Verifier:
         verified = trunc_tag == subframe_to_verify.MACSEQ
         if self.DEBUG:
             print(f'PRN: {subframe_to_verify.prn}, {str(subframe_to_verify.GST_SF)}; {trunc_tag} =? {subframe_to_verify.MACSEQ} - {verified}')
+            if subframe_to_verify.GST_SF.add_time(30) != msg.GST_SF:
+                print(f'Failed because the subframe at time {str(subframe_to_verify.GST_SF.add_time(30))} is missing')
 
         subframe_to_verify.MACSEQ_verified = (
             verified,
@@ -402,7 +438,7 @@ class OSNMA_Verifier:
             tag = mac_func.digest()
             tag_trunc = tag[:self.chains[msg.CID].message_with_header.TS_Real // 8]
             if self.DEBUG:
-                print(f'{str(msg.GST_SF)}, {verification_data.tag_type} - Computed tag: {tag_trunc.hex()}, Reference: {str(verification_data.tag.hex())} Equal? - {verification_data.tag == tag_trunc}')
+                print(f'{str(msg.GST_SF)}, Auth {msg.prn}, {verification_data.tag_type} - Computed tag: {tag_trunc.hex()}, Reference: {str(verification_data.tag.hex())} Equal? - {verification_data.tag == tag_trunc}')
 
             verification_data.navdata_osnma_ref.navdata_verifications.append(
                 (verification_data.tag_type, msg.prn, msg.TESLA_key_verified, tag_trunc == verification_data.tag)
@@ -487,8 +523,7 @@ class OSNMA_Verifier:
             ('E41CD213C9FE2D2E5B4127857FE3912C', 1145, 300),
             ('8A50D8884FD0A6298B380EBDEA7C45F2', 1145, 60),
             ('4235FF797019E2EFD3CB72780E861FED', 1145, 30),
-            ('17B98FD42A4AFD0EA36D1DA2DE406B93', 1145, 0),
-            ('540A4830D139B710A4951D73C19DA22D', 1144, 604770)
+            ('17B98FD42A4AFD0EA36D1DA2DE406B93', 1145, 0)
         ]
 
         res = []

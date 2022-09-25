@@ -121,16 +121,16 @@ class OSNMA:
         self.navdata = tuple(navdata_str_list)
         self.prn = int(prn)
         self.NMAS = int(hk_root_str[:2], 2)
-        if self.NMAS == 0:         
+        WN = int(gst_sf_str[:12], 2)
+        TOW = int(gst_sf_str[12:], 2)
+        self.GST_SF = GST(WN, TOW).add_time(-1).normalise_to_SF_multiple()
+        if self.NMAS == 0:
             return
         self.CID = int(hk_root_str[2:4], 2)
         self.CPKS = int(hk_root_str[4:7], 2)
         self.NMA_header_reserved = int(hk_root_str[7:8], 2)
         self.DSM_ID = int(hk_root_str[8:12], 2)
         self.DSM_block_ID = int(hk_root_str[12:16], 2)
-        WN = int(gst_sf_str[:12], 2)
-        TOW = int(gst_sf_str[12:], 2)
-        self.GST_SF = GST(WN, TOW).add_time(-1).normalise_to_SF_multiple()
         self.WN = self.GST_SF.wn
         self.TOW = self.GST_SF.tow
         if self.DSM_ID > 11:

@@ -83,6 +83,7 @@ for prn, subframes in prn_messages_complete.items():
     for subframe in subframes:
         osnma = OSNMA(prn, subframe['hk_root'], subframe['mack'], subframe['GST_SF'], subframe['navdata'])
         if osnma.NMAS == 0:
+            print(f'OSNMA field empty for {osnma.prn} at {str(osnma.GST_SF)}')
             continue
         storage.add(osnma)
 
