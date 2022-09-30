@@ -1,3 +1,4 @@
 progress == 1.6
 pycryptodome == 3.9.8
 protobuf==4.21.4
+pwntools==4.7.0

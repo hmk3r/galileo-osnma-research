@@ -1,0 +1,73 @@
+diff --git a/src/algorithms/telemetry_decoder/gnuradio_blocks/galileo_telemetry_decoder_gs.cc b/src/algorithms/telemetry_decoder/gnuradio_blocks/galileo_telemetry_decoder_gs.cc
+index 8c259691f..ef599ab06 100644
+--- a/src/algorithms/telemetry_decoder/gnuradio_blocks/galileo_telemetry_decoder_gs.cc
++++ b/src/algorithms/telemetry_decoder/gnuradio_blocks/galileo_telemetry_decoder_gs.cc
+@@ -334,7 +334,7 @@ void galileo_telemetry_decoder_gs::decode_INAV_word(float *page_part_symbols, in
+     if (page_part_bits[0] == 1)
+         {
+             // DECODE COMPLETE WORD (even + odd) and TEST CRC
+-            d_inav_nav.split_page(page_String, d_flag_even_word_arrived);
++            d_inav_nav.split_page(page_String, d_flag_even_word_arrived, d_satellite.get_PRN());
+             if (d_inav_nav.get_flag_CRC_test() == true)
+                 {
+                     if (d_band == '1')
+@@ -362,7 +362,7 @@ void galileo_telemetry_decoder_gs::decode_INAV_word(float *page_part_symbols, in
+     else
+         {
+             // STORE HALF WORD (even page)
+-            d_inav_nav.split_page(page_String, d_flag_even_word_arrived);
++            d_inav_nav.split_page(page_String, d_flag_even_word_arrived, d_satellite.get_PRN());
+             d_flag_even_word_arrived = 1;
+         }
+ 
+diff --git a/src/core/system_parameters/galileo_inav_message.cc b/src/core/system_parameters/galileo_inav_message.cc
+index e940e18e9..e4007f7cf 100644
+--- a/src/core/system_parameters/galileo_inav_message.cc
++++ b/src/core/system_parameters/galileo_inav_message.cc
+@@ -174,7 +174,7 @@ bool Galileo_Inav_Message::read_navigation_bool(const std::bitset<GALILEO_DATA_J
+ }
+ 
+ 
+-void Galileo_Inav_Message::split_page(std::string page_string, int32_t flag_even_word)
++void Galileo_Inav_Message::split_page(std::string page_string, int32_t flag_even_word, uint32_t prn)
+ {
+     int32_t Page_type = 0;
+ 
+@@ -196,6 +196,10 @@ void Galileo_Inav_Message::split_page(std::string page_string, int32_t flag_even
+                     const std::string Data_j = page_INAV.substr(116, 16);
+ 
+                     const std::string Reserved_1 = page_INAV.substr(132, 40);
++
++                    const std::string HKROOT = page_INAV.substr(132, 8);
++                    const std::string MACK = page_INAV.substr(140, 32);
++
+                     const std::string SAR = page_INAV.substr(172, 22);
+                     const std::string Spare = page_INAV.substr(194, 2);
+                     const std::string CRC_data = page_INAV.substr(196, 24);
+@@ -218,7 +222,12 @@ void Galileo_Inav_Message::split_page(std::string page_string, int32_t flag_even
+                             Page_type = static_cast<int32_t>(read_page_type_unsigned(page_type_bits, TYPE));
+                             Page_type_time_stamp = Page_type;
+                             const std::string Data_jk_ephemeris = Data_k + Data_j;
+-                            page_jk_decoder(Data_jk_ephemeris.c_str());
++                            int32_t page_number = page_jk_decoder(Data_jk_ephemeris.c_str());
++
++                            std::stringstream osnma_info;
++
++                            osnma_info << "osnma," << prn << "," << page_number << "," << HKROOT << "," << MACK << "," << Data_jk_ephemeris << std::endl;
++                            std::cerr << osnma_info.str();
+                         }
+                     else
+                         {
+diff --git a/src/core/system_parameters/galileo_inav_message.h b/src/core/system_parameters/galileo_inav_message.h
+index dc6063ade..15362d4db 100644
+--- a/src/core/system_parameters/galileo_inav_message.h
++++ b/src/core/system_parameters/galileo_inav_message.h
+@@ -55,7 +55,7 @@ public:
+     /*
+      * \brief Takes in input a page (Odd or Even) of 120 bit, split it according ICD 4.3.2.3 and join Data_k with Data_j
+      */
+-    void split_page(std::string page_string, int32_t flag_even_word);
++    void split_page(std::string page_string, int32_t flag_even_word, uint32_t prn=123456789);
+ 
+     /*
+      * \brief Takes in input Data_jk (128 bit) and split it in ephemeris parameters according ICD 4.3.5
