@@ -2,6 +2,12 @@
 
 py-osnma-parser is a parser and verifier for Galileo OSNMA data
 
+## ⚠️ NOTE ⚠️
+
+As of 3 August 2023, OSNMA switched public key format, so this project will no longer work and needs patching.
+
+I've provided previous GNSS samples that use the old keys for testing in [data](./data/)(they do not my location though)
+
 ## Capabilities
 
 The parser reads the data from a CSV file, where each row is a Galileo I/NAV nominal page, provided in the format:
